@@ -17,6 +17,6 @@ Most sport broadcasts camera angles provide views from the sides of the playing 
 # Reading list
 # Research plan and time-line
 
-The first task for this project will be to isolate lines from a still images to identify if the image contains a pitch/field. If the image contains a field, overlay gridlines on the pitch based on dimensions that are provided as parameters of the program. Once this image grid space is determined, object detection for players, ball, etc. 
+The first task for this project will be to isolate lines from a still images to identify if the image contains a pitch/field. If the image contains a field, overlay gridlines on the pitch based on dimensions that are provided as parameters of the program. Object detection algorithms for players, ball, etc. can be developed while developing the image grid space. Once the image grid space is determined, positions from object detection relative to the field can be used to mapped into the image grid space. Determine the position of the players on the field based on the provided image grid space and object detection. Using object positions, event detection such as ball possession or (other events) can be explored.    
 
 # Plan for data and experiments
