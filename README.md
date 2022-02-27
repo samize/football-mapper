@@ -16,4 +16,7 @@ Most sport broadcasts camera angles provide views from the sides of the playing 
 - Recognize events in the game*
 # Reading list
 # Research plan and time-line
+
+The first task for this project will be to isolate lines from a still images to identify if the image contains a pitch/field. If the image contains a field, overlay gridlines on the pitch based on dimensions that are provided as parameters of the program. Once this image grid space is determined, object detection for players, ball, etc. 
+
 # Plan for data and experiments
