@@ -1,4 +1,4 @@
-# football-mapper
+# Football Mapper
 Project to create 2-d minimap representation of football (soccer) games.
 
 Seth Mize, Lucas Franz, Bryant Cornwell
@@ -15,6 +15,9 @@ Most sport broadcast camera angles provide views from the sides of the playing f
 
 - Recognize events in the game*
 # Reading List
+
+    (Need to update as we find the papers)
+
 # Research Plan and Timeline
 
 The first task for this project will be to isolate lines from a still images to identify if the image contains a pitch/field. If the image contains a field, overlay gridlines on the pitch based on dimensions that are provided as parameters of the program. Object detection algorithms for players, ball, etc. can be developed while developing the image grid space. Once the image grid space is determined, positions from object detection relative to the field can be used to mapped into the image grid space. Determine the position of the players on the field based on the provided image grid space and object detection. Using object positions, event detection such as ball possession or (other events) can be explored.    
@@ -38,3 +41,11 @@ The dates below are subject to change. Documentation of the project will be alon
 - May 6th - Event recognition/detection
 
 # Plan for Data and Experiments
+
+Describe how you’ll evaluate your project. 
+
+What image data will you use? Planning on using image data from youtube videos of soccer game footage. 
+
+How will you measure whether or not the output of your approach is “correct”? Manually review or label images... (may require meeting to discuss)  
+
+How many images will you use? We will be using images from videos, so hundreds if not thousands of images for testing and tuning. The exact number we are unsure of yet.
