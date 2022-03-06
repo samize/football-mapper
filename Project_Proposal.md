@@ -4,9 +4,9 @@ Seth Mize, Lucas Franz, Bryant Cornwell
 
 # Project Description
 
-Over the last two decades the use of analytics has become pervasive in professional sports leagues. One component of interest is player location tracking with respect to the dimmensions of the playing surface. The primary means of collecting this information is done through GPS tracking through wearable technology or manual annotations. Our project seeks to accomplish this through computer vision techniques.
+Over the last two decades the use of analytics has become pervasive in professional sports leagues. One component of interest is player location tracking with respect to the dimensions of the playing surface. The primary means of collecting this information is done through GPS tracking through wearable technology or manual annotations. Our project seeks to accomplish this through computer vision techniques.
 
-Focusing on the sport of football (soccer), we will utlize available broadcast feeds to convert the video frames into a two-dimmensional overhead representation of the visible player locations in correlation to the visible portion of the pitch. This will be accomplished by extracting the lines from the pitch and the point/s at which a player is making contact with the pitch, and applying the appropriate projection to transform the found coordinates into their two-dimmensional overhead representation. Being successful in this project from still images from a variety of angles, areas of the pitch, and different pitches will establish the foundation to be able to convert an entire broadcast feed into this overhead viewpoint. 
+Focusing on the sport of football (soccer), we will utilize available broadcast feeds to convert the video frames into a two-dimensional overhead representation of the visible player locations in correlation to the visible portion of the pitch. This will be accomplished by extracting the lines from the pitch and the point/s at which a player is making contact with the pitch, and applying the appropriate projection to transform the found coordinates into their two-dimensional overhead representation. Being successful in this project from still images from a variety of angles, areas of the pitch, and different pitches will establish the foundation to be able to convert an entire broadcast feed into this overhead viewpoint. 
 
 
 # Reading List
@@ -39,7 +39,7 @@ Primary Responsibilities:
 
 ## Stage 1: "Identification" (March 26)
 
-This project has multiple recognition components that can be carried out in isolation and in parrellel without disrupting the other
+This project has multiple recognition components that can be carried out in isolation and in parallel without disrupting the other
 
 ### Pitch Line Identification
 
@@ -64,7 +64,7 @@ This can be done in parallel with the work of Stage 1 and Stage 2.
 
 ## Stage 3: "Refinement" (April 23)
 
-At this point, the stated task will have been completed and made available the ability to return to the original image to extrapolate further information to be included in the two-dimmensional representation
+At this point, the stated task will have been completed and made available the ability to return to the original image to extrapolate further information to be included in the two-dimensional representation
 
 ### Person Recognition and Categorization
 
@@ -89,7 +89,7 @@ With all of the previous stages completed, video frames can be processed on an i
 
 ### Event Detection
 
-Identifying player posession of the ball and passing between players of the same team.
+Identifying player possession of the ball and passing between players of the same team.
 
 Being able to identify when players jump or the ball is kicked into the air to be able to determine elevation and improve the projection for objects in flight.
 
@@ -113,7 +113,7 @@ Additionally, we plan to use data for experimentation / validation from a datase
 
 ## Experiments
 
-We're going to have several stages of experiments correpsonding to the different types of work in each stage.
+We're going to have several stages of experiments corresponding to the different types of work in each stage.
 
 - Line Projection
 
@@ -125,6 +125,6 @@ We're going to have several stages of experiments correpsonding to the different
 
 - Event Detection
 
-    Hand label posession of ball to determine accuracy of ball posession recognition and passing.
+    Hand label possession of ball to determine accuracy of ball possession recognition and passing.
 
     TBD: Identify a method to validate the accuracy of frame-to-frame movement prediction.
