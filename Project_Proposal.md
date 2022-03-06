@@ -12,19 +12,19 @@ Focusing on the sport of football (soccer), we will utlize available broadcast f
 # Reading List
 
 - Hough Transform: Underestimated Tool in the Computer Vision Field
-- https://www.researchgate.net/profile/Simon-Karpenko/publication/228573007_Hough_Transform_Underestimated_Tool_In_The_Computer_Vision_Field/links/0fcfd51487c0d13691000000/Hough-Transform-Underestimated-Tool-In-The-Computer-Vision-Field.pdf
+    https://www.researchgate.net/profile/Simon-Karpenko/publication/228573007_Hough_Transform_Underestimated_Tool_In_The_Computer_Vision_Field/links/0fcfd51487c0d13691000000/Hough-Transform-Underestimated-Tool-In-The-Computer-Vision-Field.pdf
 
 - A Computer Vision based Lane Detection Approach
-- https://www.kuet.ac.bd/webportal/ppmv2/uploads/15695142241555251476A%20Computer%20Vision%20based%20Lane%20Detection%20Approach.pdf
+    https://www.kuet.ac.bd/webportal/ppmv2/uploads/15695142241555251476A%20Computer%20Vision%20based%20Lane%20Detection%20Approach.pdf
 
 - Tracking soccer players aiming their kinematical motion analysis
-- http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.86.6699&rep=rep1&type=pdf
+    http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.86.6699&rep=rep1&type=pdf
 
 - Semantic annotation of soccer videos: automatic highlights identification
-- https://d1wqtxts1xzle7.cloudfront.net/34408817/cviu2003-pp-with-cover-page-v2.pdf?Expires=1646590248&Signature=aVtgwtvky8bFOSgQeK92x7uqnscTwuyvMCSH4McGr78m3VCOdyaiNN7EQEs77q1u7Rvg55m1RgKl13pUwqH0EBnWpo2~Ze1vOJ15YjU1M4mbsu340r8MD2GyIk2NyaHEbsUQzUpdD78MhddpEBWGqFQ2-TyqY1kd6NNHaUZMjAax4tRTRuBHx28ciF-XWafxUgKd3sugnIhcje86yvfXWy8D4aQDbbfmjRi9gofqePw8zdTCTPFFU5hJqQkAdLQR3rG1QzaSyxRNwlsveUmvT7ZWTau~xr3n80tdHiNsTsScmxuUl-E1KV6KaWJh17b7PBNeEqu-98krH3oVB-JEYQ__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
+    https://d1wqtxts1xzle7.cloudfront.net/34408817/cviu2003-pp-with-cover-page-v2.pdf?Expires=1646590248&Signature=aVtgwtvky8bFOSgQeK92x7uqnscTwuyvMCSH4McGr78m3VCOdyaiNN7EQEs77q1u7Rvg55m1RgKl13pUwqH0EBnWpo2~Ze1vOJ15YjU1M4mbsu340r8MD2GyIk2NyaHEbsUQzUpdD78MhddpEBWGqFQ2-TyqY1kd6NNHaUZMjAax4tRTRuBHx28ciF-XWafxUgKd3sugnIhcje86yvfXWy8D4aQDbbfmjRi9gofqePw8zdTCTPFFU5hJqQkAdLQR3rG1QzaSyxRNwlsveUmvT7ZWTau~xr3n80tdHiNsTsScmxuUl-E1KV6KaWJh17b7PBNeEqu-98krH3oVB-JEYQ__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
 
-- Soccer video and player position dataset
-- https://d1wqtxts1xzle7.cloudfront.net/48709988/Soccer_Video_and_Player_Position_Dataset20160909-8093-1b4mz52-with-cover-page-v2.pdf?Expires=1646590361&Signature=RFWt~FaREWMKOmJD9P2gDYZcGlIrNPupcUF8s-0WDjnEK~birNVzT9cSjK~Rfo8nO79gPwpdOTWv6SOYpGoiPskyrxyA45862M78xeXhhq9EIiopm2Qe8i8Wa1z77g3PeMJarywxF8k5F9up0VpWXa0pvzoshXOUM2c1e1i2GDw09a49BikqFPKsqF9pZVS3ZQB~T6p0KMy42LEM9s3eoDww2vl3aa5ebJq7UDfwCetCeAEa7~mDC-y~I2DDjKykh6KAeOYluXG4cCxBREYE8uAQhhGQ8p4-op6~5Yx5V53oG3Ko27bDv-o0HVhJmLIwcW0huTa-89azXyVpSudXww__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
+ - Soccer video and player position dataset
+    https://d1wqtxts1xzle7.cloudfront.net/48709988/Soccer_Video_and_Player_Position_Dataset20160909-8093-1b4mz52-with-cover-page-v2.pdf?Expires=1646590361&Signature=RFWt~FaREWMKOmJD9P2gDYZcGlIrNPupcUF8s-0WDjnEK~birNVzT9cSjK~Rfo8nO79gPwpdOTWv6SOYpGoiPskyrxyA45862M78xeXhhq9EIiopm2Qe8i8Wa1z77g3PeMJarywxF8k5F9up0VpWXa0pvzoshXOUM2c1e1i2GDw09a49BikqFPKsqF9pZVS3ZQB~T6p0KMy42LEM9s3eoDww2vl3aa5ebJq7UDfwCetCeAEa7~mDC-y~I2DDjKykh6KAeOYluXG4cCxBREYE8uAQhhGQ8p4-op6~5Yx5V53oG3Ko27bDv-o0HVhJmLIwcW0huTa-89azXyVpSudXww__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
 
 - 
 
