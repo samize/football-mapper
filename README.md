@@ -2,8 +2,11 @@
 Project to create 2-d minimap representation of football (soccer) games.
 
 Seth Mize, Lucas Franz, Bryant Cornwell
+
 # Project Description
-Most sport broadcast camera angles provide views from the sides of the playing field but tracking players can be difficult as the camera and views change. Having an additional real-time tracking, overhead view of the field could provide an easier way to study player performances and other game statistics. Our group is interested in using computer vision techniques to recognize football (soccer) objects and mapping the movements into an overhead 2-D space for further event recognition during gameplay. This would involve collecting still images to train an image recognition algorithm for the players, ball, and other related objects. The algorithm can then be used to track object movement in the video. This movement can then be translated to a 2-D overhead space, which can be used to track game progress and events from an overhead view.
+Over the last two decades the use of analytics has become pervasive in professional sports leagues. One component of interest is player location tracking with respect to the dimmensions of the playing surface. The primary means of collecting this information is done through GPS tracking through wearable technology or manual annotations. Our project seeks to accomplish this through computer vision techniques.
+
+Focusing on the sport of football (soccer), we will utlize available broadcast feeds to convert the video frames into a two-dimmensional overhead representation of the visible player locations in correlation to the visible portion of the pitch. This will be accomplished by extracting the lines from the pitch and the point/s at which a player is making contact with the pitch, and applying the appropriate projection to transform the found coordinates into their two-dimmensional overhead representation. Being successful in this project from still images from a variety of angles, areas of the pitch, and different pitches will establish the foundation to be able to convert an entire broadcast feed into this overhead viewpoint. 
 
 - Identify Objects in still image
 

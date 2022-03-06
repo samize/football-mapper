@@ -17,36 +17,69 @@ Focusing on the sport of football (soccer), we will utlize available broadcast f
 When executing this project we will assign primary responsibilities but plan to work with constant collaboration.
 
 Primary Responsibilities:
-- Lucas Franz - Line Extraction
-- Bryant Cornwell - Object Recognition
-- Seth Mize - Projection
+- Lucas Franz - Line Detection and Pitch-Line Extraction
+- Bryant Cornwell - Object Detection and Recognition
+- Seth Mize - Projection 
 
-## Stage 1: "Recognition" (March 26)
+## Stage 1: "Identification" (March 26)
 
-This project has two recognition components that can be carried out in isolation and in parrellel without disrupting the other
+This project has multiple recognition components that can be carried out in isolation and in parrellel without disrupting the other
 
-- Pitch Line Identification
-- Player-Pitch Contact Identification
+### Pitch Line Identification
 
-## Stage 2: "Projection" (April 9)
+Based on a still-frame of a football match, identifying the lines painted on the pitch. They have generally consistent dimensions from pitch-to-pitch, so these lines can be later used to determine the necessary parameters for projecting the still frame into a 2-d overhead representation.
 
-Once the pertinent information has be identified and isolated we can move to projection
+### Object Detection
 
-- Project Pitch Lines to 2D
-- Use Calculated Projection of Lines to Map Players
+Identify objects (people, ball, and goals) in the image to be able to determine the point at which the contact the pitch (used as their location for the projection into the overhead view).
+
+
+## Stage 2: "Projection and Interim Project Report" (April 3)
+
+### Still-Frame to 2-d Projection
+
+Generate the mapping from the 2-d gridspace to the equivalent gridspace of the still-frame. Use this mapping to project the location of objects from the still-frame gridspace to the 2-d gridspace.
+
+This work can be partially done in parallel with Stage 1, using expected outputs to generate the projection process. Refinement can be done once Stage 1 is finished. At this stage, the projection of the balls and players may be inaccurate if they leave the ground substantially.
+
+### Interim Project Report
+
+This can be done in parallel with the work of Stage 1 and Stage 2.
 
 ## Stage 3: "Refinement" (April 23)
 
 At this point, the stated task will have been completed and made available the ability to return to the original image to extrapolate further information to be included in the two-dimmensional representation
 
-- Player Categorization into Teams
-- Ball Identification
-- Referee Identification
+### Person Recognition and Categorization
 
-## Stage 4: "Video" (April 30)
+Be able to identify a detected object as a person and categorize it into.
 
-With all pieces in place, video frames can be processed on an individual basis and then stitched back together to produce the overhead video representation of the game
+- Team A
+- Team B
+- Referee
+- Other
 
+### Ball Recognition
+
+Be able to identify a detected object as a soccer ball. If possible, determine whether the ball is on the ground or in flight. If this not possible from a still frame, it may be easier when analyzing the frames in sequence in Stage 4.
+
+### Goal Recognition
+
+Be able to identify a detected object as one of the goals.
+
+## Stage 4: "Sequential Frame Analysis" (April 30 / Deadline)
+
+With all of the previous stages completed, video frames can be processed on an individual basis and then stitched back together to produce the overhead video representation of the game.
+
+### Event Detection
+
+Being able to identify when players jump or the ball is kicked into the air to be able to determine elevation and improve the projection for objects in flight.
+
+Given that the goal and ball detections, identifications, and projections are accurate, we should be able to identify when a goal is scored.
+
+### Filtering Non-Gameplay
+
+When analyzing frames in sequence, we should be able to filter out frames that are not part of the gameplay.
 
 # Data and Experiments
 
