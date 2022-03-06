@@ -37,7 +37,7 @@ Once the pertinent information has be identified and isolated we can move to pro
 
 ## Stage 3: "Refinement" (April 23)
 
-At this point, the stated task will have been completed and made available to ability to return to the original image to extrapolate further information to be included in the two-dimmensional representation
+At this point, the stated task will have been completed and made available the ability to return to the original image to extrapolate further information to be included in the two-dimmensional representation
 
 - Player Categorization into Teams
 - Ball Identification
