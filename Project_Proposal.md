@@ -21,12 +21,10 @@ Focusing on the sport of football (soccer), we will utilize available broadcast 
     http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.86.6699&rep=rep1&type=pdf
 
 - Semantic annotation of soccer videos: automatic highlights identification
-    https://d1wqtxts1xzle7.cloudfront.net/34408817/cviu2003-pp-with-cover-page-v2.pdf?Expires=1646590248&Signature=aVtgwtvky8bFOSgQeK92x7uqnscTwuyvMCSH4McGr78m3VCOdyaiNN7EQEs77q1u7Rvg55m1RgKl13pUwqH0EBnWpo2~Ze1vOJ15YjU1M4mbsu340r8MD2GyIk2NyaHEbsUQzUpdD78MhddpEBWGqFQ2-TyqY1kd6NNHaUZMjAax4tRTRuBHx28ciF-XWafxUgKd3sugnIhcje86yvfXWy8D4aQDbbfmjRi9gofqePw8zdTCTPFFU5hJqQkAdLQR3rG1QzaSyxRNwlsveUmvT7ZWTau~xr3n80tdHiNsTsScmxuUl-E1KV6KaWJh17b7PBNeEqu-98krH3oVB-JEYQ__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
+    https://doi.org/10.1016/j.cviu.2003.06.004
 
  - Soccer video and player position dataset
-    https://d1wqtxts1xzle7.cloudfront.net/48709988/Soccer_Video_and_Player_Position_Dataset20160909-8093-1b4mz52-with-cover-page-v2.pdf?Expires=1646590361&Signature=RFWt~FaREWMKOmJD9P2gDYZcGlIrNPupcUF8s-0WDjnEK~birNVzT9cSjK~Rfo8nO79gPwpdOTWv6SOYpGoiPskyrxyA45862M78xeXhhq9EIiopm2Qe8i8Wa1z77g3PeMJarywxF8k5F9up0VpWXa0pvzoshXOUM2c1e1i2GDw09a49BikqFPKsqF9pZVS3ZQB~T6p0KMy42LEM9s3eoDww2vl3aa5ebJq7UDfwCetCeAEa7~mDC-y~I2DDjKykh6KAeOYluXG4cCxBREYE8uAQhhGQ8p4-op6~5Yx5V53oG3Ko27bDv-o0HVhJmLIwcW0huTa-89azXyVpSudXww__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
-
-- 
+    https://doi.org/10.1145/2557642.2563677
 
 # Research Plan and Time-line
 
