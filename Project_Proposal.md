@@ -11,6 +11,9 @@ Focusing on the sport of football (soccer), we will utlize available broadcast f
 
 # Reading List
 
+- (Paper 1)
+- (Paper 2)
+- (Paper 3)
 
 # Research Plan and Time-line
 
@@ -73,13 +76,42 @@ With all of the previous stages completed, video frames can be processed on an i
 
 ### Event Detection
 
+Identifying player posession of the ball and passing between players of the same team.
+
 Being able to identify when players jump or the ball is kicked into the air to be able to determine elevation and improve the projection for objects in flight.
 
 Given that the goal and ball detections, identifications, and projections are accurate, we should be able to identify when a goal is scored.
 
 ### Filtering Non-Gameplay
 
-When analyzing frames in sequence, we should be able to filter out frames that are not part of the gameplay.
+When analyzing frames in sequence, we should be able to filter out frames that are not part of the gameplay (e.g. ads, close-ups, audience).
+
+### Video Compilation and Output
+
+Compile the processed frames into a watchable video.
 
 # Data and Experiments
 
+## Data Collection
+
+We intend to use video footage from FIFA gameplay posted to youtube (https://www.youtube.com/results?search_query=fifa+full+match).
+
+Additionally, we plan to use data for experimentation / validation from a dataset that contains still-frame pictures of the same time from multiple angles (https://datasets.simula.no/alfheim/).
+
+## Experiments
+
+We're going to have several stages of experiments correpsonding to the different types of work in each stage.
+
+- Line Projection
+
+    Using the multiple-still-frame dataset, validate that our algorithm correctly maps the multiple images to the same 2-d projection (for where they overlap).
+
+- Player Detection and Recognition
+
+    Hand label players into their category and use the hand-labeled data to determine accuracy of the player detection and recognition.
+
+- Event Detection
+
+    Hand label posession of ball to determine accuracy of ball posession recognition and passing.
+
+    TBD: Identify a method to validate the accuracy of frame-to-frame movement prediction.
