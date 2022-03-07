@@ -23,7 +23,7 @@ Focusing on the sport of football (soccer), we will utilize available broadcast 
 - Semantic annotation of soccer videos: automatic highlights identification
     https://doi.org/10.1016/j.cviu.2003.06.004
 
- - Soccer video and player position dataset
+- Soccer video and player position dataset
     https://doi.org/10.1145/2557642.2563677
 
 # Research Plan and Time-line
@@ -31,8 +31,11 @@ Focusing on the sport of football (soccer), we will utilize available broadcast 
 When executing this project we will assign primary responsibilities but plan to work with constant collaboration.
 
 Primary Responsibilities:
+
 - Lucas Franz - Line Detection and Pitch-Line Extraction
+
 - Bryant Cornwell - Object Detection and Recognition
+
 - Seth Mize - Projection 
 
 ## Stage 1: "Identification" (March 26)
