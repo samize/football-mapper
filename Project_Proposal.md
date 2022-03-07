@@ -115,9 +115,9 @@ Additionally, we plan to use data for experimentation / validation from a datase
 
 We're going to have several stages of experiments corresponding to the different types of work in each stage.
 
-- Line Projection
+- Projection
 
-    Using the multiple-still-frame dataset, validate that our algorithm correctly maps the multiple images to the same 2-d projection (for where they overlap).
+    Using a dataset including three simultaneous camera angles of overlapping viewpoints, we can conduct the projection into the 2-d overhead perspective independently and measure consistency by judging the distances between projections for the overlapping portions of the images.
 
 - Player Detection and Recognition
 
