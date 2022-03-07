@@ -104,7 +104,7 @@ Compile the processed frames into a watchable video.
 
 ## Data Collection
 
-We intend to use video footage from FIFA gameplay posted to youtube (https://www.youtube.com/results?search_query=fifa+full+match).
+We intend to use video footage from FIFA gameplay posted to youtube (https://www.youtube.com/results?search_query=fifa+full+match). For hand-labelling frames of the video, we will only select a reasonable amount of frames to be able to tune and validate algorithms. The exact number of images we will use is TBD; however, given the number of frames in the video, we a have a large sample space to select from.
 
 Additionally, we plan to use data for experimentation / validation from a dataset that contains still-frame pictures of the same time from multiple angles (https://datasets.simula.no/alfheim/).
 
