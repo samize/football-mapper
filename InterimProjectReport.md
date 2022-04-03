@@ -43,7 +43,7 @@ After isolating the pitch line pixels with the best results so far we implemente
 
 The objects planned for detection are team A players, team B players, referees, goalies and the soccer ball. 
 Detecting the goals is not necessary and adds a layer of complexity, so we removed it from object detection. Since we are looking to detect objects from live video camera angles, much from the images in the training dataset are taken from recorded soccer games.
-Originally, the images were labelled by using different color bounding boxes per object category, but we ran into some difficulties when trying code the extraction of boundary points and category label.
+Originally, the images were labelled by using different color bounding boxes per object category illustrated in the table below, but we ran into some difficulties when trying code the extraction of boundary points and category label.
 
 | Image | Object Detection | 
 | :-----------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: | 
@@ -51,10 +51,15 @@ Originally, the images were labelled by using different color bounding boxes per
 | <img src="documentation/data/original/sample_2.png" alt="Sample 2" width="400"/> | <img src="documentation/data/detection_images/sample_2_detect.png" alt="Sample 2 Detected" width="400"> |
 
 
-The images were re-labelled using "LabelImg" that provides boundary coordinates and labels for manually drawn boundary boxes.
+The images were re-labelled using "LabelImg" that provides boundary coordinates and labels for manually drawn boundary boxes. See the table below for an example.
+
+| Image | Label Dateframe | 
+| :-----------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: | 
+| <img src="documentation/data/detection_images/detect_labelimg.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images/detect_df.png" alt="Sample 1 Labels" width="400"> |
+
+
 The next step, object recognition, is to develop a model with this training dataset and apply it to some test images or video streams.
 The final step will be refinement of the model that may include increasing the training dataset images and improving the code.
-
 
 ## Pitch Line Projection
 

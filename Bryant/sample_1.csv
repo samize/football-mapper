@@ -1,0 +1,13 @@
+filename,width,height,class,xmin,ymin,xmax,ymax
+sample_1.png,2560,1250,Team B,561,387,618,534
+sample_1.png,2560,1250,Team B,1103,262,1159,409
+sample_1.png,2560,1250,Team A,1006,372,1082,522
+sample_1.png,2560,1250,Team B,1306,436,1410,588
+sample_1.png,2560,1250,Team B,1003,753,1095,981
+sample_1.png,2560,1250,Team A,1049,993,1170,1226
+sample_1.png,2560,1250,Team A,39,733,156,962
+sample_1.png,2560,1250,Ball,1803,543,1836,571
+sample_1.png,2560,1250,Team A,1826,271,1882,419
+sample_1.png,2560,1250,Team A,1830,397,1896,563
+sample_1.png,2560,1250,Team A,2131,800,2245,1024
+sample_1.png,2560,1250,Referee,13,99,63,218
