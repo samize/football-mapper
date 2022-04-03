@@ -39,8 +39,6 @@ After isolating the pitch line pixels with the best results so far we implemente
 
 ## Object Detection
 
-(Building sample data)
-
 The objects planned for detection are team A players, team B players, referees, goalies and the soccer ball. 
 Detecting the goals is not necessary and adds a layer of complexity, so we removed it from object detection. Since we are looking to detect objects from live video camera angles, much from the images in the training dataset are taken from recorded soccer games.
 Originally, the images were labelled by using different color bounding boxes per object category illustrated in the table below, but we ran into some difficulties when trying code the extraction of boundary points and category label.
