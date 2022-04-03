@@ -46,7 +46,7 @@ Detecting the goals is not necessary and adds a layer of complexity, so we remov
 
 Since we are looking to detect objects from live video camera angles, much from the images in the training dataset are taken from recorded soccer games.
 Originally, the images were labelled by using different color bounding boxes per object category, but we ran into some difficulties when trying code the extraction of boundary points and category label.
-The images were re-labelled using "labelImg" that provides boundary coordinates and labels for manually drawn boundary boxes.
+The images were re-labelled using "LabelImg" that provides boundary coordinates and labels for manually drawn boundary boxes.
 The next step, object recognition, is to develop a model with this training dataset and apply it to some test images or video streams.
 The final step will be refinement of the model that may include increasing the training dataset images and improving the code.
 
@@ -79,4 +79,4 @@ The final step will be refinement of the model that may include increasing the t
 - Soccer video and player position dataset
     https://doi.org/10.1145/2557642.2563677
   
-- labelImg Documentation: https://github.com/tzutalin/labelImg
+- LabelImg Documentation: https://github.com/tzutalin/labelImg
