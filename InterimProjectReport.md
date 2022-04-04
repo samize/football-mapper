@@ -49,7 +49,7 @@ Originally, the images were labelled by using different color bounding boxes per
 
 | Image | Object Detection | 
 | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | 
-| <img src=".\documentation\data\original\sample_1.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images/sample_1_detect.png" alt="Sample 1 Detected" width="400"> |
+| <img src="documentation/data/original/sample_1.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images/sample_1_detect.png" alt="Sample 1 Detected" width="400"> |
 | <img src="documentation/data/original/sample_2.png" alt="Sample 2" width="400"/> | <img src="documentation/data/detection_images/sample_2_detect.png" alt="Sample 2 Detected" width="400"> |
 
 
