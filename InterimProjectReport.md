@@ -96,11 +96,28 @@ We'll likely use an alternative to ORB/SIFT for feature point selection, likely 
 
 ## 4/21/2022
 
-### Bryant
+### Bryant and Seth
 
 - Object Recognition
     
     For object recognition, another algorithm for labeling the detected objects will need to be developed based off the work on the object detection algorithm. Performing experiments on still and video streams to test the algorithm. The algorithm will need to output a label for a specific detected object in order to categorize the object.
+
+## 4/28/2022
+
+### Bryant and Seth
+
+- Time Series Analysis
+
+    To improve the accuracy of tracking objects for when they leave the ground, we'll need to analyze sequences of images from the video to help determine the elevation of the soccer ball overtime. We will likely implement something similar to Hidden Markov Models to help reduce the times that the soccer ball takes strange paths in the mapping during flight.
+
+## 5/1/2022 or Final Due Date
+
+### Bryant, Seth, and Lucas
+
+- Final Project Report
+
+    Compile all documentation and generate the report.
+
 
 # References
 
