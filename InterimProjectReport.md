@@ -32,12 +32,12 @@ After isolating the pitch line pixels with the best HSL results so far, we have 
 
 ### Results
 
-| Original | HSL Filter | HSL Canny | HSL Hough |
+| Original | HSL Filter | HSL Canny | HSL Hough
 | :-----------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: |  :---------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: | 
-| ![documentation/Pitch_Lines/broadcast_img_0.jpg](documentation/Pitch_Lines/broadcast_img_0.jpg) | ![documentation/Pitch_Lines/HSL_Output_0.png](documentation/Pitch_Lines/HSL_Output_0.png) | <img src="documentation/Pitch_Lines/Canny_Output_0.png" alt="image_name" width="400"> |<img src="documentation/Pitch_Lines/Hough_Output_0.png" alt="image_name" width="400"> |
+| <img src="documentation/Pitch_Lines/broadcast_img_0.jpg" alt="image_name" width="400"/> | <img src="documentation/Pitch_Lines/HSL_Output_0.png" alt="image_name" width="400"> | <img src="documentation/Pitch_Lines/Canny_Output_0.png" alt="image_name" width="400"> |<img src="documentation/Pitch_Lines/Hough_Output_0.png" alt="image_name" width="400"> |
 | <img src="documentation/Pitch_Lines/broadcast_img_1.jpg" alt="image_name" width="400"/> | <img src="documentation/Pitch_Lines/HSL_Output_1.png" alt="image_name" width="400"> | <img src="documentation/Pitch_Lines/Canny_Output_1.png" alt="image_name" width="400"> |<img src="documentation/Pitch_Lines/Hough_Output_1.png" alt="image_name" width="400"> |
 | <img src="documentation/Pitch_Lines/broadcast_img_2.jpg" alt="image_name" width="400"/> | <img src="documentation/Pitch_Lines/HSL_Output_2.png" alt="image_name" width="400"> | <img src="documentation/Pitch_Lines/Canny_Output_2.png" alt="image_name" width="400"> |<img src="documentation/Pitch_Lines/Hough_Output_2.png" alt="image_name" width="400"> |
-| ![broadcast_img_3.jpg](documentation/Pitch_Lines/broadcast_img_3.jpg) | <img src="documentation/Pitch_Lines/HSL_Output_3.png" alt="image_name" width="400"> | <img src="documentation/Pitch_Lines/Canny_Output_3.png" alt="image_name" width="400"> |<img src="documentation/Pitch_Lines/Hough_Output_3.png" alt="image_name" width="400"> |
+| <img src="documentation/Pitch_Lines/broadcast_img_3.jpg" alt="image_name" width="400"/> | <img src="documentation/Pitch_Lines/HSL_Output_3.png" alt="image_name" width="400"> | <img src="documentation/Pitch_Lines/Canny_Output_3.png" alt="image_name" width="400"> |<img src="documentation/Pitch_Lines/Hough_Output_3.png" alt="image_name" width="400"> |
 
 
 
