@@ -8,7 +8,7 @@ Focusing on the sport of football (soccer), we will utilize available broadcast 
 
 Our project is focused on coupling multiple existing techniques towards a new application. The problem can be broken into 3 primary categories; Line Detection, Object Detection, and Projection. By identifying the standard lines of the pitch, we can compare them with a proportion overhead representation of standard pitch line to solve for a projection transformation. Once a transformation matrix is solved for, identified objects can be mapped into the same overhead space. Further object categorization can be used to provide more detail to the generated overhead representation. 
 
-When investigating the best applications of line detection we found the most useful prior research to be lane detection for autonomous vehicles. The _Tracking soccer players aiming their kinematical motion analysis_ article discussed how to split blobs or groups of more that one player with detection which we will need to utilize when recognizing a detected groups of players. We will utilize the projection transformations from Assignment 2 and other course material as the related work. 
+When investigating the best applications of line detection we found the most useful prior research to be lane detection for autonomous vehicles. The _Tracking soccer players aiming their kinematical motion analysis_ article discussed how to split blobs or groups of more that one player with detection which we will need to utilize when recognizing a detected groups of players. For the image projection from the video projection to the overhead projection, the course material related to assignment 2 has been our reference. 
 
 # Progress So Far
 
