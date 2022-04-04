@@ -1,0 +1,181 @@
+<!-- ?xml version='1.0' encoding='UTF-8'? -->
+<link href="/github-markdown-css/github-css.css" rel="stylesheet"/>
+<meta charset="utf-8" content="text/html"/>
+<div class="gist">
+<style class="formula-style">
+        svg.gh-md-to-html-formula {
+            fill: black;
+        }
+    </style>
+<div class="gist-file"> <!-- This is the class that is responsible for the boxing! -->
+<div class="gist-data">
+<div class="js-gist-file-update-container js-task-list-container file-box">
+<div class="file" id="user-content-article-InterimProjectReport">
+<div class="Box-body readme blob js-code-block-container p-5 p-xl-6" id="user-content-file-docker-image-pull-md-readme" style="margin-left: 40px; margin-right: 40px; margin-top: 20px; margin-bottom: 20px">
+<article class="markdown-body entry-content container-lg" itemprop="text">
+<h1 id="user-content-introduction">
+<a aria-hidden="true" class="anchor" href="#user-content-introduction" id="user-content-introduction" name="user-content-introduction"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h1>
+<p>Over the last two decades the use of analytics has become pervasive in professional sports leagues. One component of interest is player location tracking with respect to the dimensions of the playing surface. The primary means of collecting this information is done through GPS tracking through wearable technology or manual annotations. Our project seeks to accomplish this through computer vision techniques.</p>
+<p>Focusing on the sport of football (soccer), we will utilize available broadcast feeds to convert the video frames into a two-dimensional, overhead representation of the displayed player locations based on the corresponding portion of the pitch in the frame of the image. This will be accomplished by extracting the lines from the pitch and the point/s at which a player is making contact with the pitch, and applying the appropriate projection to transform the found coordinates into their two-dimensional overhead representation. Success of this process for a variety of still images for multiple pitches will establish the foundation for us to convert an entire broadcast feed into this overhead viewpoint.</p>
+<h1 id="user-content-background-and-related-work">
+<a aria-hidden="true" class="anchor" href="#user-content-background-and-related-work" id="user-content-background-and-related-work" name="user-content-background-and-related-work"><span aria-hidden="true" class="octicon octicon-link"></span></a>Background and Related Work</h1>
+<p>Our project is focused on coupling multiple existing techniques towards a new application. The problem can be broken into 3 primary categories; Line Detection, Object Detection, and Projection. By identifying the standard lines of the pitch, we can compare them with a proportion overhead representation of standard pitch line to solve for a projection transformation. Once a transformation matrix is solved for, identified objects can be mapped into the same overhead space. Further object categorization can be used to provide more detail to the generated overhead representation.</p>
+<p>When investigating the best applications of line detection we found the most useful prior research to be lane detection for autonomous vehicles. The <em>Tracking soccer players aiming their kinematical motion analysis</em> article discussed how to split blobs or groups of more that one player with detection which we will need to utilize when recognizing a detected groups of players. For the image projection from the video projection to the overhead projection, the course material related to assignment 2 has been our reference.</p>
+<h1 id="user-content-progress-so-far">
+<a aria-hidden="true" class="anchor" href="#user-content-progress-so-far" id="user-content-progress-so-far" name="user-content-progress-so-far"><span aria-hidden="true" class="octicon octicon-link"></span></a>Progress So Far</h1>
+<h2 id="user-content-pitch-line-detection">
+<a aria-hidden="true" class="anchor" href="#user-content-pitch-line-detection" id="user-content-pitch-line-detection" name="user-content-pitch-line-detection"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pitch Line Detection</h2>
+<h3 id="user-content-pixel-isolation">
+<a aria-hidden="true" class="anchor" href="#user-content-pixel-isolation" id="user-content-pixel-isolation" name="user-content-pixel-isolation"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pixel Isolation</h3>
+<p>The first step in line detection for our problem is to remove unnecessary pixels that could result in the identification of unimportant lines. To accomplish this we looked at two different techniques.</p>
+<h4 id="user-content-red-green-blue-filtering-rgb">
+<a aria-hidden="true" class="anchor" href="#user-content-red-green-blue-filtering-rgb" id="user-content-red-green-blue-filtering-rgb" name="user-content-red-green-blue-filtering-rgb"><span aria-hidden="true" class="octicon octicon-link"></span></a>Red, Green, Blue Filtering (RGB)</h4>
+<p>Our first attempt at this isolation was using the RGB pixel values included within the image. The thought process was that because the pitch lines are always white, we would be able to isolate the white pixels. There were two issues with this approach. The first issue is fairly obvious, there are a multitude of unimportant white pixels throughout the image, including those in billboards and stadium features that obscure our goal. The second issues arises with the camera quality and image compression. Because the lines are constantly bordering the green grass of the field, the pitch line pixels often had elevated green values. If the RGB filtering was too focused on removing the green grass we would lose large pitch line sections, if the filtering was too relaxed in the green channel, large portions of the grass would remain included.</p>
+<h4 id="user-content-hue-saturation-lightness-filtering-hsl">
+<a aria-hidden="true" class="anchor" href="#user-content-hue-saturation-lightness-filtering-hsl" id="user-content-hue-saturation-lightness-filtering-hsl" name="user-content-hue-saturation-lightness-filtering-hsl"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hue, Saturation, Lightness Filtering (HSL)</h4>
+<p>Looking at solutions for road line detection we noticed their implementation of HSL filtering. HSL is a conversion to a new pixel definition space from the standard RGB space. Using the cv2 package, this conversion results in 3 values per pixel, ranging from 0 to 255. The 3 channels are true to their name with hue representing the color of the pixel, saturation representing the boldness of the pixel, and lightness representing the brightness of the pixel. For hue, we've found the best filter to be 0-80, isolating the green spectrem. Saturation is filtered to 150-255, and lightness is filtered to 20-255.</p>
+<h3 id="user-content-line-detection">
+<a aria-hidden="true" class="anchor" href="#user-content-line-detection" id="user-content-line-detection" name="user-content-line-detection"><span aria-hidden="true" class="octicon octicon-link"></span></a>Line Detection</h3>
+<p>After isolating the pitch line pixels with the best HSL results so far, we have experimented with Canny Edge Detection and Hough Transforms. The cv2 package includes functions for each of these tools. Canny Edge Detection does a better job of picking up all visible pitch lines, unfortunatly it also detects the other objects remaining on the grass. Hough Transform does a better job at looking to extract only the pitch lines, but struggles when detecting non-linear aspects of the pitch like the center circle and top of the goalie's box. Hough Transform also struggles when the camera image skews some of the pitch lines, making them non-linear.</p>
+<h3 id="user-content-results">
+<a aria-hidden="true" class="anchor" href="#user-content-results" id="user-content-results" name="user-content-results"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results</h3>
+<p>| Original | HSL Filter | HSL Canny | HSL Hough |
+| :-----------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: |  :---------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: |
+| <a href="/.\documentation/broadcast_img_0_.jpeg" rel="noopener noreferrer" target="_blank"><img alt="documentation/Pitch_Lines/broadcast_img_0.jpg" data-canonical-src="/.\documentation/broadcast_img_0_.jpeg" src="/.\documentation/broadcast_img_0_.jpeg" style="max-width:100%; max-height: 662px;"/></a> | <a href="/.\documentation/HSL_Output_0.png" rel="noopener noreferrer" target="_blank"><img alt="documentation/Pitch_Lines/HSL_Output_0.png" data-canonical-src="/.\documentation/HSL_Output_0.png" src="/.\documentation/HSL_Output_0.png" style="max-width:100%; max-height: 662px;"/></a> | <a href="/.\documentation/Canny_Output_0.png" rel="noopener noreferrer" target="_blank"><img alt="image_name" data-canonical-src="/.\documentation/Canny_Output_0.png" src="/.\documentation/Canny_Output_0.png" style="max-width:100%; max-height: 662px;" width="400"/></a> |<a href="/.\documentation/Hough_Output_0.png" rel="noopener noreferrer" target="_blank"><img alt="image_name" data-canonical-src="/.\documentation/Hough_Output_0.png" src="/.\documentation/Hough_Output_0.png" style="max-width:100%; max-height: 662px;" width="400"/></a> |
+| <a href="/.\documentation/broadcast_img_1_.jpeg" rel="noopener noreferrer" target="_blank"><img alt="image_name" data-canonical-src="/.\documentation/broadcast_img_1_.jpeg" src="/.\documentation/broadcast_img_1_.jpeg" style="max-width:100%; max-height: 1145px;" width="400"/></a> | <a href="/.\documentation/HSL_Output_1.png" rel="noopener noreferrer" target="_blank"><img alt="image_name" data-canonical-src="/.\documentation/HSL_Output_1.png" src="/.\documentation/HSL_Output_1.png" style="max-width:100%; max-height: 1145px;" width="400"/></a> | <a href="/.\documentation/Canny_Output_1.png" rel="noopener noreferrer" target="_blank"><img alt="image_name" data-canonical-src="/.\documentation/Canny_Output_1.png" src="/.\documentation/Canny_Output_1.png" style="max-width:100%; max-height: 1145px;" width="400"/></a> |<a href="/.\documentation/Hough_Output_1.png" rel="noopener noreferrer" target="_blank"><img alt="image_name" data-canonical-src="/.\documentation/Hough_Output_1.png" src="/.\documentation/Hough_Output_1.png" style="max-width:100%; max-height: 1145px;" width="400"/></a> |
+| <a href="/.\documentation/broadcast_img_2_.jpeg" rel="noopener noreferrer" target="_blank"><img alt="image_name" data-canonical-src="/.\documentation/broadcast_img_2_.jpeg" src="/.\documentation/broadcast_img_2_.jpeg" style="max-width:100%; max-height: 720px;" width="400"/></a> | <a href="/.\documentation/HSL_Output_2.png" rel="noopener noreferrer" target="_blank"><img alt="image_name" data-canonical-src="/.\documentation/HSL_Output_2.png" src="/.\documentation/HSL_Output_2.png" style="max-width:100%; max-height: 720px;" width="400"/></a> | <a href="/.\documentation/Canny_Output_2.png" rel="noopener noreferrer" target="_blank"><img alt="image_name" data-canonical-src="/.\documentation/Canny_Output_2.png" src="/.\documentation/Canny_Output_2.png" style="max-width:100%; max-height: 720px;" width="400"/></a> |<a href="/.\documentation/Hough_Output_2.png" rel="noopener noreferrer" target="_blank"><img alt="image_name" data-canonical-src="/.\documentation/Hough_Output_2.png" src="/.\documentation/Hough_Output_2.png" style="max-width:100%; max-height: 720px;" width="400"/></a> |
+| <a href="/.\documentation/broadcast_img_3_.jpeg" rel="noopener noreferrer" target="_blank"><img alt="broadcast_img_3.jpg" data-canonical-src="/.\documentation/broadcast_img_3_.jpeg" src="/.\documentation/broadcast_img_3_.jpeg" style="max-width:100%; max-height: 720px;"/></a> | <a href="/.\documentation/HSL_Output_3.png" rel="noopener noreferrer" target="_blank"><img alt="image_name" data-canonical-src="/.\documentation/HSL_Output_3.png" src="/.\documentation/HSL_Output_3.png" style="max-width:100%; max-height: 720px;" width="400"/></a> | <a href="/.\documentation/Canny_Output_3.png" rel="noopener noreferrer" target="_blank"><img alt="image_name" data-canonical-src="/.\documentation/Canny_Output_3.png" src="/.\documentation/Canny_Output_3.png" style="max-width:100%; max-height: 720px;" width="400"/></a> |<a href="/.\documentation/Hough_Output_3.png" rel="noopener noreferrer" target="_blank"><img alt="image_name" data-canonical-src="/.\documentation/Hough_Output_3.png" src="/.\documentation/Hough_Output_3.png" style="max-width:100%; max-height: 720px;" width="400"/></a> |</p>
+<h2 id="user-content-object-detection">
+<a aria-hidden="true" class="anchor" href="#user-content-object-detection" id="user-content-object-detection" name="user-content-object-detection"><span aria-hidden="true" class="octicon octicon-link"></span></a>Object Detection</h2>
+<p>The objects planned for detection are team A players, team B players, referees, goalies and the soccer ball.
+Detecting the goals is not necessary and adds a layer of complexity, so we removed it from object detection. Since we are looking to detect objects from live video camera angles, much from the images in the training dataset are taken from recorded soccer games.
+Originally, the images were labelled by using different color bounding boxes per object category illustrated in the table below, but we ran into some difficulties when trying code the extraction of boundary points and category label.</p>
+<p>| Image | Object Detection |
+| :-----------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: |
+| <a href="/.\documentation/sample_1.png" rel="noopener noreferrer" target="_blank"><img alt="Sample 1" data-canonical-src="/.\documentation/sample_1.png" src="/.\documentation/sample_1.png" style="max-width:100%; max-height: 1250px;" width="400"/></a> | <a href="/.\documentation/sample_1_detect.png" rel="noopener noreferrer" target="_blank"><img alt="Sample 1 Detected" data-canonical-src="/.\documentation/sample_1_detect.png" src="/.\documentation/sample_1_detect.png" style="max-width:100%; max-height: 1250px;" width="400"/></a> |
+| <a href="/.\documentation/sample_2.png" rel="noopener noreferrer" target="_blank"><img alt="Sample 2" data-canonical-src="/.\documentation/sample_2.png" src="/.\documentation/sample_2.png" style="max-width:100%; max-height: 1173px;" width="400"/></a> | <a href="/.\documentation/sample_2_detect.png" rel="noopener noreferrer" target="_blank"><img alt="Sample 2 Detected" data-canonical-src="/.\documentation/sample_2_detect.png" src="/.\documentation/sample_2_detect.png" style="max-width:100%; max-height: 1173px;" width="400"/></a> |</p>
+<p>The images were re-labelled using "LabelImg" that provides boundary coordinates and labels for manually drawn boundary boxes. See the table below for an example.</p>
+<p>| Image | Label Dateframe |
+| :-----------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: |
+| <a href="/.\documentation/detect_labelimg.png" rel="noopener noreferrer" target="_blank"><img alt="Sample 1" data-canonical-src="/.\documentation/detect_labelimg.png" src="/.\documentation/detect_labelimg.png" style="max-width:100%; max-height: 511px;" width="400"/></a> | <a href="/.\documentation/detect_df.png" rel="noopener noreferrer" target="_blank"><img alt="Sample 1 Labels" data-canonical-src="/.\documentation/detect_df.png" src="/.\documentation/detect_df.png" style="max-width:100%; max-height: 282px;" width="400"/></a> |</p>
+<p>The next step for object detection, is to develop a model with this training dataset and apply it to some test images and, eventually, video streams.
+The final step will be refinement of the model that may include increasing the training dataset images and improving the code.</p>
+<h2 id="user-content-pitch-line-projection">
+<a aria-hidden="true" class="anchor" href="#user-content-pitch-line-projection" id="user-content-pitch-line-projection" name="user-content-pitch-line-projection"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pitch Line Projection</h2>
+<p>When Assignment 2 first came out, we noticed how much overlap it had with this part of our Final Project, so a lot of the progress toward this section since our Project Proposal comes from Assignment 2. For the Pitch Line Projection, we're going to repurpose code from Assigntment 2.</p>
+<p>We'll likely use an alternative to ORB/SIFT for feature point selection, likely using components of the line detection that we have already completed combined with some form of corner detection. We would then combine this with RANSAC, similar to Part 3 of Assignment 2 along with the Projective matrix code from Part 2 of Assignment 2 to identify the best mapping of the video projection to the overhead projection.</p>
+<h1 id="user-content-revised-research-plan">
+<a aria-hidden="true" class="anchor" href="#user-content-revised-research-plan" id="user-content-revised-research-plan" name="user-content-revised-research-plan"><span aria-hidden="true" class="octicon octicon-link"></span></a>Revised Research Plan</h1>
+<h2 id="user-content-4102022">
+<a aria-hidden="true" class="anchor" href="#user-content-4102022" id="user-content-4102022" name="user-content-4102022"><span aria-hidden="true" class="octicon octicon-link"></span></a>4/10/2022</h2>
+<h3 id="user-content-seth">
+<a aria-hidden="true" class="anchor" href="#user-content-seth" id="user-content-seth" name="user-content-seth"><span aria-hidden="true" class="octicon octicon-link"></span></a>Seth</h3>
+<ul>
+<li>
+<p>Pitch Line Projection</p>
+<p>Implement one or more algorithms for feature point selection for the lines on the field, including ORB/SIFT, Harris Corner Detection, and others if needed.</p>
+</li>
+</ul>
+<h3 id="user-content-lucas">
+<a aria-hidden="true" class="anchor" href="#user-content-lucas" id="user-content-lucas" name="user-content-lucas"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lucas</h3>
+<ul>
+<li>
+<p>Pitch Line Detection</p>
+<p>Come up with a secondary filtering process with comparable results to HSL filtering.</p>
+</li>
+</ul>
+<h2 id="user-content-4172022">
+<a aria-hidden="true" class="anchor" href="#user-content-4172022" id="user-content-4172022" name="user-content-4172022"><span aria-hidden="true" class="octicon octicon-link"></span></a>4/17/2022</h2>
+<h3 id="user-content-seth-1">
+<a aria-hidden="true" class="anchor" href="#user-content-seth-1" id="user-content-seth-1" name="user-content-seth-1"><span aria-hidden="true" class="octicon octicon-link"></span></a>Seth</h3>
+<ul>
+<li>
+<p>Pitch Line Projection</p>
+<p>Finish repurposing A2 code to apply RANSAC and the projective matrix calculation for the Pitch Line Projection.</p>
+<p>Run experiments for the Pitch Line Projection using the different methods for feature point selection to identify which method(s) will be best to use.</p>
+</li>
+</ul>
+<h3 id="user-content-bryant">
+<a aria-hidden="true" class="anchor" href="#user-content-bryant" id="user-content-bryant" name="user-content-bryant"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bryant</h3>
+<ul>
+<li>
+<p>Object Detection Algorithm</p>
+<p>The next step for object detection, is to develop a model with the training dataset and apply it to test images to testing and improve the detection. This algorithm will need to output detected object's bounding box for the relative position of the player on the field and labeling the object in object recognition.</p>
+<p>The final step will be refinement of the model that may include increasing the training dataset images and improving the code.</p>
+</li>
+</ul>
+<h3 id="user-content-lucas-1">
+<a aria-hidden="true" class="anchor" href="#user-content-lucas-1" id="user-content-lucas-1" name="user-content-lucas-1"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lucas</h3>
+<ul>
+<li>
+<p>Pitch Line Detection</p>
+<p>Create step in the pipeline for appropriately aggregating multiple pixel filters to produce the most isolated pitch lines for detection.</p>
+</li>
+</ul>
+<h2 id="user-content-4212022">
+<a aria-hidden="true" class="anchor" href="#user-content-4212022" id="user-content-4212022" name="user-content-4212022"><span aria-hidden="true" class="octicon octicon-link"></span></a>4/21/2022</h2>
+<h3 id="user-content-bryant-and-seth">
+<a aria-hidden="true" class="anchor" href="#user-content-bryant-and-seth" id="user-content-bryant-and-seth" name="user-content-bryant-and-seth"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bryant and Seth</h3>
+<ul>
+<li>
+<p>Object Recognition</p>
+<p>For object recognition, another algorithm for labeling the detected objects will need to be developed based off the work on the object detection algorithm. Performing experiments on still and video streams to test the algorithm. The algorithm will need to output a label for a specific detected object in order to categorize the object.</p>
+</li>
+</ul>
+<h2 id="user-content-4282022">
+<a aria-hidden="true" class="anchor" href="#user-content-4282022" id="user-content-4282022" name="user-content-4282022"><span aria-hidden="true" class="octicon octicon-link"></span></a>4/28/2022</h2>
+<h3 id="user-content-bryant-and-seth-and-lucas">
+<a aria-hidden="true" class="anchor" href="#user-content-bryant-and-seth-and-lucas" id="user-content-bryant-and-seth-and-lucas" name="user-content-bryant-and-seth-and-lucas"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bryant and Seth and Lucas</h3>
+<ul>
+<li>
+<p>Time Series Analysis</p>
+<p>To improve the accuracy of tracking objects for when they leave the ground, we'll need to analyze sequences of images from the video to help determine the elevation of the soccer ball overtime. We will likely implement something similar to Hidden Markov Models to help reduce the times that the soccer ball takes strange paths in the mapping during flight.</p>
+</li>
+</ul>
+<h2 id="user-content-512022-or-final-due-date">
+<a aria-hidden="true" class="anchor" href="#user-content-512022-or-final-due-date" id="user-content-512022-or-final-due-date" name="user-content-512022-or-final-due-date"><span aria-hidden="true" class="octicon octicon-link"></span></a>5/1/2022 or Final Due Date</h2>
+<h3 id="user-content-bryant-seth-and-lucas">
+<a aria-hidden="true" class="anchor" href="#user-content-bryant-seth-and-lucas" id="user-content-bryant-seth-and-lucas" name="user-content-bryant-seth-and-lucas"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bryant, Seth, and Lucas</h3>
+<ul>
+<li>
+<p>Final Project Report</p>
+<p>Compile all documentation and generate the report.</p>
+</li>
+</ul>
+<h1 id="user-content-references">
+<a aria-hidden="true" class="anchor" href="#user-content-references" id="user-content-references" name="user-content-references"><span aria-hidden="true" class="octicon octicon-link"></span></a>References</h1>
+<ul>
+<li>
+<p>Hough Transform: Underestimated Tool in the Computer Vision Field
+<a href="https://www.researchgate.net/profile/Simon-Karpenko/publication/228573007_Hough_Transform_Underestimated_Tool_In_The_Computer_Vision_Field/links/0fcfd51487c0d13691000000/Hough-Transform-Underestimated-Tool-In-The-Computer-Vision-Field.pdf" rel="nofollow">https://www.researchgate.net/profile/Simon-Karpenko/publication/228573007_Hough_Transform_Underestimated_Tool_In_The_Computer_Vision_Field/links/0fcfd51487c0d13691000000/Hough-Transform-Underestimated-Tool-In-The-Computer-Vision-Field.pdf</a></p>
+</li>
+<li>
+<p>A Computer Vision based Lane Detection Approach
+<a href="https://www.kuet.ac.bd/webportal/ppmv2/uploads/15695142241555251476A%20Computer%20Vision%20based%20Lane%20Detection%20Approach.pdf" rel="nofollow">https://www.kuet.ac.bd/webportal/ppmv2/uploads/15695142241555251476A%20Computer%20Vision%20based%20Lane%20Detection%20Approach.pdf</a></p>
+</li>
+<li>
+<p>Tracking soccer players aiming their kinematical motion analysis
+<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.86.6699&amp;rep=rep1&amp;type=pdf" rel="nofollow">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.86.6699&amp;rep=rep1&amp;type=pdf</a></p>
+</li>
+<li>
+<p>Semantic annotation of soccer videos: automatic highlights identification
+<a href="https://doi.org/10.1016/j.cviu.2003.06.004" rel="nofollow">https://doi.org/10.1016/j.cviu.2003.06.004</a></p>
+</li>
+<li>
+<p>Soccer video and player position dataset
+<a href="https://doi.org/10.1145/2557642.2563677" rel="nofollow">https://doi.org/10.1145/2557642.2563677</a></p>
+</li>
+<li>
+<p>LabelImg Documentation: <a href="https://github.com/tzutalin/labelImg">https://github.com/tzutalin/labelImg</a></p>
+</li>
+<li>
+<p>Advanced Lane Detection Using Computer Vision: <a href="https://towardsdatascience.com/teaching-cars-to-see-advanced-lane-detection-using-computer-vision-87a01de0424f" rel="nofollow">https://towardsdatascience.com/teaching-cars-to-see-advanced-lane-detection-using-computer-vision-87a01de0424f</a></p>
+</li>
+</ul>
+</article>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
