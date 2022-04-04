@@ -67,13 +67,40 @@ We'll likely use an alternative to ORB/SIFT for feature point selection, likely 
 
 # Revised Research Plan
 
-- 4/10/2022: Pitch Line Project:  Feature Point Selection | Seth
-- 4/17/2022: Pitch Line Project: RANSAC & Projective Matrix Identification | Seth 
-  Object Detection Algorithm by Bryant: The next step for object detection, is to develop a model with the training dataset and apply it to test images to testing and improve the detection. This algorithm will need to output detected object's bounding box for the relative position of the player on the field and labeling the object in object recognition.
-The final step will be refinement of the model that may include increasing the training dataset images and improving the code.
-- 4/21/2022: Object Recognition by Bryant: For object recognition, another algorithm for labeling the detected objects will need to be developed based off the work on the object detection algorithm. Performing experiments on still and video streams to test the algorithm. The algorithm will need to output a label for a specific detected object in order to categorize the object.
-- 4/24/2022:
-- 5/01/2022:
+
+## 4/10/2022
+
+### Seth
+
+- Pitch Line Projection
+
+    Implement one or more algorithms for feature point selection for the lines on the field, including ORB/SIFT, Harris Corner Detection, and others if needed.
+
+## 4/17/2022
+
+### Seth
+
+- Pitch Line Projection
+
+    Finish repurposing A2 code to apply RANSAC and the projective matrix calculation for the Pitch Line Projection.
+
+    Run experiments for the Pitch Line Projection using the different methods for feature point selection to identify which method(s) will be best to use.
+
+### Bryant
+
+- Object Detection Algorithm
+
+    The next step for object detection, is to develop a model with the training dataset and apply it to test images to testing and improve the detection. This algorithm will need to output detected object's bounding box for the relative position of the player on the field and labeling the object in object recognition.
+
+    The final step will be refinement of the model that may include increasing the training dataset images and improving the code.
+
+## 4/21/2022
+
+### Bryant
+
+- Object Recognition
+    
+    For object recognition, another algorithm for labeling the detected objects will need to be developed based off the work on the object detection algorithm. Performing experiments on still and video streams to test the algorithm. The algorithm will need to output a label for a specific detected object in order to categorize the object.
 
 # References
 
