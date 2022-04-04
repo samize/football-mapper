@@ -67,8 +67,11 @@ We'll likely use an alternative to ORB/SIFT for feature point selection, likely 
 
 # Revised Research Plan
 
-- 4/10/2022:
-- 4/17/2022:
+- 4/10/2022: Pitch Line Project:  Feature Point Selection | Seth
+- 4/17/2022: Pitch Line Project: RANSAC & Projective Matrix Identification | Seth 
+  Object Detection Algorithm by Bryant: The next step for object detection, is to develop a model with the training dataset and apply it to test images to testing and improve the detection. This algorithm will need to output detected object's bounding box for the relative position of the player on the field and labeling the object in object recognition.
+The final step will be refinement of the model that may include increasing the training dataset images and improving the code.
+- 4/21/2022: Object Recognition by Bryant: For object recognition, another algorithm for labeling the detected objects will need to be developed based off the work on the object detection algorithm. Performing experiments on still and video streams to test the algorithm. The algorithm will need to output a label for a specific detected object in order to categorize the object.
 - 4/24/2022:
 - 5/01/2022:
 
