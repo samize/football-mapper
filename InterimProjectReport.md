@@ -80,6 +80,12 @@ We'll likely use an alternative to ORB/SIFT for feature point selection, likely 
 
     Implement one or more algorithms for feature point selection for the lines on the field, including ORB/SIFT, Harris Corner Detection, and others if needed.
 
+### Lucas
+
+- Pitch Line Detection
+
+    Come up with a secondary filtering process with comparable results to HSL filtering.
+
 ## 4/17/2022
 
 ### Seth
@@ -98,6 +104,12 @@ We'll likely use an alternative to ORB/SIFT for feature point selection, likely 
 
     The final step will be refinement of the model that may include increasing the training dataset images and improving the code.
 
+### Lucas
+
+- Pitch Line Detection
+
+    Create step in the pipeline for appropriately aggregating multiple pixel filters to produce the most isolated pitch lines for detection.
+
 ## 4/21/2022
 
 ### Bryant and Seth
@@ -108,7 +120,7 @@ We'll likely use an alternative to ORB/SIFT for feature point selection, likely 
 
 ## 4/28/2022
 
-### Bryant and Seth
+### Bryant and Seth and Lucas
 
 - Time Series Analysis
 
