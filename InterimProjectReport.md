@@ -56,12 +56,14 @@ The images were re-labelled using "LabelImg" that provides boundary coordinates 
 | <img src="documentation/data/detection_images/detect_labelimg.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images/detect_df.png" alt="Sample 1 Labels" width="400"> |
 
 
-The next step, object recognition, is to develop a model with this training dataset and apply it to some test images or video streams.
+The next step for object detection, is to develop a model with this training dataset and apply it to some test images and, eventually, video streams.
 The final step will be refinement of the model that may include increasing the training dataset images and improving the code.
 
 ## Pitch Line Projection
 
-(Abstracting assignment 2 code)
+When Assignment 2 first came out, we noticed how much overlap it had with this part of our Final Project, so a lot of the progress toward this section since our Project Proposal comes from Assignment 2. For the Pitch Line Projection, we're going to repurpose code from Assigntment 2.
+
+We'll likely use an alternative to ORB/SIFT for feature point selection, likely using components of the line detection that we have already completed combined with some form of corner detection. We would then combine this with RANSAC, similar to Part 3 of Assignment 2 along with the Projective matrix code from Part 2 of Assignment 2 to identify the best mapping of the video projection to the overhead projection.
 
 # Revised Research Plan
 
