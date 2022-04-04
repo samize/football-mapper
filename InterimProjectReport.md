@@ -6,6 +6,10 @@ Focusing on the sport of football (soccer), we will utilize available broadcast 
 
 # Background and Related Work
 
+Our project is focused on coupling multiple existing techniques towards a new application. The problem can be broken into 3 primary categories; Line Detection, Object Detection, and Projection. By identifying the standard lines of the pitch, we can compare them with a proportion overhead representation of standard pitch line to solve for a projection transformation. Once a transformation matrix is solved for, identified objects can be mapped into the same overhead space. Further object categorization can be used to provide more detail to the generated overhead representation. 
+
+When investigating the best applications of line detection we found the most useful prior research to be lane detection for autonomous vehicles. (What object recognition related work do you want to reference). (What projection related work do you want to reference?)
+
 # Progress So Far
 
 ## Pitch Line Detection
@@ -24,16 +28,16 @@ Looking at solutions for road line detection we noticed their implementation of 
 
 ### Line Detection
 
-After isolating the pitch line pixels with the best results so far we implemented Canny edge detection through the cv2 package.
+After isolating the pitch line pixels with the best HSL results so far, we have experimented with Canny Edge Detection and Hough Transforms. The cv2 package includes functions for each of these tools. Canny Edge Detection does a better job of picking up all visible pitch lines, unfortunatly it also detects the other objects remaining on the grass. Hough Transform does a better job at looking to extract only the pitch lines, but struggles when detecting non-linear aspects of the pitch like the center circle and top of the goalie's box. Hough Transform also struggles when the camera image skews some of the pitch lines, making them non-linear.  
 
 ### Results
 
-| Original | HSL Filter | HSL Canny | 
-| :-----------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: |  :---------------------------------------------------------------------------------------------------: | 
-| <img src="documentation/Pitch_Lines/broadcast_img_0.jpg" alt="image_name" width="400"/> | <img src="documentation/Pitch_Lines/HSL_Output_0.png" alt="image_name" width="400"> | <img src="documentation/Pitch_Lines/Canny_Output_0.png" alt="image_name" width="400"> |
-| <img src="documentation/Pitch_Lines/broadcast_img_1.jpg" alt="image_name" width="400"/> | <img src="documentation/Pitch_Lines/HSL_Output_1.png" alt="image_name" width="400"> | <img src="documentation/Pitch_Lines/Canny_Output_1.png" alt="image_name" width="400"> |
-| <img src="documentation/Pitch_Lines/broadcast_img_2.jpg" alt="image_name" width="400"/> | <img src="documentation/Pitch_Lines/HSL_Output_2.png" alt="image_name" width="400"> | <img src="documentation/Pitch_Lines/Canny_Output_2.png" alt="image_name" width="400"> |
-| <img src="documentation/Pitch_Lines/broadcast_img_3.jpg" alt="image_name" width="400"/> | <img src="documentation/Pitch_Lines/HSL_Output_3.png" alt="image_name" width="400"> | <img src="documentation/Pitch_Lines/Canny_Output_3.png" alt="image_name" width="400"> |
+| Original | HSL Filter | HSL Canny | HSL Hough
+| :-----------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: |  :---------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: | 
+| <img src="documentation/Pitch_Lines/broadcast_img_0.jpg" alt="image_name" width="400"/> | <img src="documentation/Pitch_Lines/HSL_Output_0.png" alt="image_name" width="400"> | <img src="documentation/Pitch_Lines/Canny_Output_0.png" alt="image_name" width="400"> |<img src="documentation/Pitch_Lines/Hough_Output_0.png" alt="image_name" width="400"> |
+| <img src="documentation/Pitch_Lines/broadcast_img_1.jpg" alt="image_name" width="400"/> | <img src="documentation/Pitch_Lines/HSL_Output_1.png" alt="image_name" width="400"> | <img src="documentation/Pitch_Lines/Canny_Output_1.png" alt="image_name" width="400"> |<img src="documentation/Pitch_Lines/Hough_Output_1.png" alt="image_name" width="400"> |
+| <img src="documentation/Pitch_Lines/broadcast_img_2.jpg" alt="image_name" width="400"/> | <img src="documentation/Pitch_Lines/HSL_Output_2.png" alt="image_name" width="400"> | <img src="documentation/Pitch_Lines/Canny_Output_2.png" alt="image_name" width="400"> |<img src="documentation/Pitch_Lines/Hough_Output_2.png" alt="image_name" width="400"> |
+| <img src="documentation/Pitch_Lines/broadcast_img_3.jpg" alt="image_name" width="400"/> | <img src="documentation/Pitch_Lines/HSL_Output_3.png" alt="image_name" width="400"> | <img src="documentation/Pitch_Lines/Canny_Output_3.png" alt="image_name" width="400"> |<img src="documentation/Pitch_Lines/Hough_Output_3.png" alt="image_name" width="400"> |
 
 
 
