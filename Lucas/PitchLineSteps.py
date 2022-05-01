@@ -1,8 +1,13 @@
 
 import sys
 import os
+from pathlib import Path
+import json
+
 import cv2
+
 import PitchFeatures
+
 
 if __name__ == '__main__':
 
@@ -22,5 +27,10 @@ if __name__ == '__main__':
         true_file_name = sys.argv[1] + '/' + file_name
         im = cv2.imread(true_file_name)
         hough, corner, corners = PitchFeatures.run_corners(im)
+
+        json_file = file_name.replace(f'{Path(file_name).suffix}', '.json')
+
         cv2.imwrite(sys.argv[1]+'_hough/'+file_name, hough)
         cv2.imwrite(sys.argv[1]+'_corners/'+file_name, corner)
+        with open(sys.argv[1]+'_corners/'+json_file, 'w+') as file:
+            file.write(json.dumps(corners, indent=4))
