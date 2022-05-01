@@ -146,19 +146,30 @@ def get_line_corners(img, intersections):
 
 
 
-def run_corners(img):
+
+if __name__ == '__main__':
+
+    im = cv2.imread(sys.argv[1])
 
     hue_buffer = 25
     gray_percentile = 0.985
 
-    im = get_isolated_pitch(img, hue_buffer)
+    im = get_isolated_pitch(im, hue_buffer)
+
+    cv2.imwrite('documentation/test_clips/154_corners/PF_Step1.png', im)
 
     im = get_isolated_lines(im, gray_percentile)
+
+    cv2.imwrite('documentation/test_clips/154_corners/PF_Step2.png', im)
     
-    hough_im, hough_lines = get_hough_lines(im)
+    im, hough_lines = get_hough_lines(im)
+
+    cv2.imwrite('documentation/test_clips/154_corners/PF_Step3.png', im)
     
     intersections = get_line_intersections(hough_lines)
 
-    corners_im, corners = get_line_corners(hough_im, intersections)
+    im, corners = get_line_corners(im, intersections)
 
-    return hough_im, corners_im, corners
+    cv2.imwrite('documentation/test_clips/154_corners/PF_Step4.png', im)
+    
+    print(corners)
