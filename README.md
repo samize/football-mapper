@@ -5,11 +5,24 @@ Seth Mize, Lucas Franz, Bryant Cornwell
 
 # Methods
 ## Object Detection
+
 The first task was to create a dataset by taking some images from a few football games and manually label them to train a model for object detection.
 Images were labelled using "LabelImg" ([link](https://github.com/tzutalin/labelImg)) [1]. This is a tool used to manually apply bounding boxes to an input image, label them, and export a xml file that consists of box locations and associated labels for the given image. The dataset used can be found [here](documentation/data/original) and the associated xml files are [here](documentation/data/detection_images).
 
 # Discussion
 ## Object Detection
+
+Attempt to build model using TensorFlow 2:
+- Utilized the following tutorial for setting up an object detection model: https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html
+- Instead of using a pre-trained model, I wanted to create my own using the information from tensorflow: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/configuring_jobs.md 
+- Using faster_rcnn_resnet50_coco.config
+- Needed checkpoint files from a pretrained model in order to create a 		model.
+- Found checkpoint files for this config and the checkpoint 		version was not supported for version 2.
+- Not enough information/guidance for troubleshooting all of the errors as the tutorial for creating a model seem dated. Finding another approach.
+
+## Overhead view base photo
+
+Source: https://conceptdraw.com/a1992c3/preview
 
 ### Image labeling and dataset for custom object detection model
 
@@ -122,3 +135,4 @@ The following images were taken from the TV_Soccer dataset provided by the socce
 
 # References
 [1] LabelImg Github: https://github.com/tzutalin/labelImg
+
