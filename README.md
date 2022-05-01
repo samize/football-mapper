@@ -3,6 +3,13 @@ Project to create 2-d minimap representation of football (soccer) games.
 
 Seth Mize, Lucas Franz, Bryant Cornwell
 
+# Abstract
+The world of football analytics has grown in interest as more ideas for tracking players statistics and team movements continue to provide value to the industry.
+Tracking players is a familiar subject, but not applying an active overhead view using recorded or live footage. 
+This project aims to use computer vision techniques to identify feature points and objects to transform there positions to a two-dimensional overhead field representation using available broadcast feed from football games.
+
+Our results provide _____ (Waiting on results)
+
 # Methods
 ## Overhead view base photo
 Source: https://conceptdraw.com/a1992c3/preview
