@@ -11,11 +11,18 @@ Seth Mize, Lucas Franz, Bryant Cornwell
 The first task was to take some images from a few football games and manually label them to train a model for object detection.
 The objects planned for detection are team A players, team B players, referees, goalies and the soccer ball. Since we are looking to detect objects from live video camera angles, much from the images in the training dataset are taken from recorded soccer games. Originally, the images were labelled by using different color bounding boxes per object category illustrated in the table below, but we ran into some difficulties when trying code, the extraction of boundary points and category label.   
 
-(image table from interim report)
+| Image | Object Detection | 
+| ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | 
+| <img src="documentation/data/original/sample_1.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images/sample_1_detect.png" alt="Sample 1 Detected" width="400"> |
+| <img src="documentation/data/original/sample_2.png" alt="Sample 2" width="400"/> | <img src="documentation/data/detection_images/sample_2_detect.png" alt="Sample 2 Detected" width="400"> |
+
 
 The images were re-labelled using "LabelImg" that provides boundary coordinates and labels for manually drawn boundary boxes. When an image has been labelled manually, the output from LabelImg is an xml file that provides the image name, image size, bounding box coordinates, and class. See the table below for an example of a manually labelled image with a corresponding dataframe of information.
 
-(image table from interim report)
+| Image | Label Dateframe | 
+| ----------------------------------------------------------------------------------- |--------------------------------------------------------------------------------------------------- | 
+| <img src="documentation/data/detection_images/detect_labelimg.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images/detect_df.png" alt="Sample 1 Labels" width="400"> |
+
 
 During the model development, a group decision was made to simplify the model to find two classes, person and ball.  
 
@@ -102,6 +109,14 @@ After a closer look at the TensorFlow 2 (TF2) Object Detection API tutorial, the
 ## Object Detection
 The following images were taken from the TV_Soccer dataset provided by the soccer player detection and tracking research paper by Samuel Hurault, Coloma Ballester, Gloria Haro ([google drive link](https://drive.google.com/drive/folders/1dE1yzHyBOVGs4A1VlmFTq_TXOT1S5f_b?usp=sharing)).
 
-![105.jpg](documentation/data/object_detection/105.jpg)
-![detected_105.jpg](documentation/data/object_detection/detected_105.png)
+| Original Image | Detected Image | 
+| ----------------------------------------------------------------------------------- |--------------------------------------------------------------------------------------------------- | 
+| <img src="documentation/data/object_detection/105.jpg" alt="Sample 1" width="400"/> | <img src="documentation/data/object_detection/detected_105.png" alt="Sample 1 Detected" width="400"> |
+
+Or
+
+| Original Image | Detected Image | 
+| ----------------------------------------------------------------------------------- |--------------------------------------------------------------------------------------------------- | 
+| ![105.jpg](documentation/data/object_detection/105.jpg) | ![detected_105.jpg](documentation/data/object_detection/detected_105.png) |
+
 
