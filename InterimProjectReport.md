@@ -49,15 +49,15 @@ Originally, the images were labelled by using different color bounding boxes per
 
 | Image | Object Detection | 
 | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | 
-| <img src="documentation/data/original/sample_1.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images/sample_1_detect.png" alt="Sample 1 Detected" width="400"> |
-| <img src="documentation/data/original/sample_2.png" alt="Sample 2" width="400"/> | <img src="documentation/data/detection_images/sample_2_detect.png" alt="Sample 2 Detected" width="400"> |
+| <img src="documentation/data/original/sample_1.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images_original/sample_1_detect.png" alt="Sample 1 Detected" width="400"> |
+| <img src="documentation/data/original/sample_2.png" alt="Sample 2" width="400"/> | <img src="documentation/data/detection_images_original/sample_2_detect.png" alt="Sample 2 Detected" width="400"> |
 
 
 The images were re-labelled using "LabelImg" that provides boundary coordinates and labels for manually drawn boundary boxes. See the table below for an example.
 
 | Image | Label Dateframe | 
 | ----------------------------------------------------------------------------------- |--------------------------------------------------------------------------------------------------- | 
-| <img src="documentation/data/detection_images/detect_labelimg.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images/detect_df.png" alt="Sample 1 Labels" width="400"> |
+| <img src="documentation/data/detection_images_original/detect_labelimg.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images_original/detect_df.png" alt="Sample 1 Labels" width="400"> |
 
 
 The next step for object detection, is to develop a model with this training dataset and apply it to some test images and, eventually, video streams.
