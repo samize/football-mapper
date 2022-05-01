@@ -4,26 +4,25 @@ import os
 import cv2
 import numpy as np
 
-def is_white_pixel(pixel):
+def is_white_pixel(pixel, threshold=175):
 
-    if pixel[0] > 220 and pixel[1] > 220 and pixel[2] > 220:
-        return True
-    
-    return False
+    return pixel[0] > threshold and pixel[1] > threshold and pixel[2] > threshold
 
 def is_red_pixel(pixel):
 
-    if pixel[0] < 0.75*pixel[2] and pixel[1] < 0.75*pixel[2] and pixel[2] > 90:
-        return True
+    return pixel[0] < 0.75*pixel[2] and pixel[1] < 0.75*pixel[2] and pixel[2] > 90
 
-    return False
+def is_blue_pixel(pixel, ratio=(1, 0.75, 0.75), threshold=255):
+
+    return pixel[1] < ratio[1] * pixel[0] and pixel[2] < ratio[2] * pixel[0] and pixel[0] >= threshold
 
 def is_dark_pixel(pixel):
 
-    if pixel[0] < 100 and pixel[1] < 100 and pixel[2] < 100:
-        return True
+    return pixel[0] < 100 and pixel[1] < 100 and pixel[2] < 100
 
-    return False
+def is_black_pixel(pixel, threshold=0):
+
+    return pixel[0] <= threshold and pixel[1] <= threshold and pixel[2] <= threshold
 
 if __name__ == '__main__':
     image = cv2.imread('above-with-dots.png')
