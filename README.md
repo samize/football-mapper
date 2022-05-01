@@ -5,6 +5,11 @@ Seth Mize, Lucas Franz, Bryant Cornwell
 
 # Methods
 ## Object Detection
+The first task was to create a dataset by taking some images from a few football games and manually label them to train a model for object detection.
+Images were labelled using "LabelImg" ([link](https://github.com/tzutalin/labelImg)) [1]. This is a tool used to manually apply bounding boxes to an input image, label them, and export a xml file that consists of box locations and associated labels for the given image. The dataset used can be found [here](documentation/data/original) and the associated xml files are [here](documentation/data/detection_images).
+
+# Discussion
+## Object Detection
 
 ### Image labeling and dataset for custom object detection model
 
@@ -109,14 +114,11 @@ After a closer look at the TensorFlow 2 (TF2) Object Detection API tutorial, the
 ## Object Detection
 The following images were taken from the TV_Soccer dataset provided by the soccer player detection and tracking research paper by Samuel Hurault, Coloma Ballester, Gloria Haro ([google drive link](https://drive.google.com/drive/folders/1dE1yzHyBOVGs4A1VlmFTq_TXOT1S5f_b?usp=sharing)).
 
-| Original Image | Detected Image | 
-| ----------------------------------------------------------------------------------- |--------------------------------------------------------------------------------------------------- | 
-| <img src="documentation/data/object_detection/105.jpg" alt="Sample 1" width="400"/> | <img src="documentation/data/object_detection/detected_105.png" alt="Sample 1 Detected" width="400"> |
-
-Or
 
 | Original Image | Detected Image | 
 | ----------------------------------------------------------------------------------- |--------------------------------------------------------------------------------------------------- | 
 | ![105.jpg](documentation/data/object_detection/105.jpg) | ![detected_105.jpg](documentation/data/object_detection/detected_105.png) |
 
 
+# References
+[1] LabelImg Github: https://github.com/tzutalin/labelImg
