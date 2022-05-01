@@ -1,5 +1,6 @@
 from pathlib import Path
 from copy import deepcopy
+import os
 
 import numpy as np
 import cv2 as cv
@@ -48,7 +49,6 @@ def ransac(point_matches, sample_size, iterations, threshold, min_match_sample_s
 
             i += 1
 
-    print('Best sample error:', test_transition_matrix(best_transform, best_sample))
     best_sample_a = best_sample[:,0,:]
     centroid_a = centroid(best_sample_a)
     best_sample_b = best_sample[:,1,:]
@@ -98,7 +98,6 @@ class FeaturePointExtractor:
         dst = cv.dilate(dst, None)
         image = deepcopy(self.image)
         self._potential_corners = np.transpose((dst > threshold * dst.max()).nonzero())
-        print(len(self._potential_corners))
         image[dst > threshold * dst.max()] = [0,0,255]
         return image
 
@@ -110,20 +109,27 @@ class FeaturePointExtractor:
         return im_with_keypoints
 
 if __name__ == '__main__':
-
+    """
     above = FeaturePointExtractor('above.jpg')
     above.sharpen()
     acorners = above.harris_corner_detection(0.05)
     above_points = above.potential_corners
+    """
 
-    fpe = FeaturePointExtractor('../Lucas/output_3.jpg')
-    fpe.sharpen()
-    fpe.mask(150,255)
-    corners = fpe.harris_corner_detection(0.2)
-    output_points = fpe.potential_corners
+    cleaned_directory = Path('D:/Users/Olev/data/football-mapper/TV_soccer/cleaned/')
+    corner_directory = Path('D:/Users/Olev/data/football-mapper/TV_soccer/corners/')
+
+    for file in tqdm(os.listdir(cleaned_directory)):
+        fpe = FeaturePointExtractor(str(cleaned_directory / file))
+        #fpe.sharpen()
+        fpe.mask(150,255)
+        corners = fpe.harris_corner_detection(0.2)
+        output_points = fpe.potential_corners
+        cv.imwrite(str(corner_directory / file), corners)
 
     point_matches = []
 
+    """
     for ap in tqdm(above_points, desc='Above Points', unit='points', position=1):
         for op in tqdm(output_points, desc='Output Points', unit='points', position=2, leave=False):
             point_matches.append([ap, op])
@@ -134,7 +140,6 @@ if __name__ == '__main__':
     transformed = apply_transformation(corners, transform_matrix)
 
     cv.imwrite('transformed.jpg', transformed)
-
-    
+    """
 
 

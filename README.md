@@ -12,3 +12,7 @@ Attempt to build model using TensorFlow 2:
 - Needed checkpoint files from a pretrained model in order to create a 		model.
 - Found checkpoint files for this config and the checkpoint 		version was not supported for version 2.
 - Not enough information/guidance for troubleshooting all of the errors as the tutorial for creating a model seem dated. Finding another approach.
+
+## Overhead view base photo
+
+Source: https://conceptdraw.com/a1992c3/preview
