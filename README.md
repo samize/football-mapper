@@ -21,15 +21,15 @@ The objects planned for detection are team A players, team B players, referees, 
 
 | Image | Object Detection | 
 | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | 
-| <img src="documentation/data/original/sample_1.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images/sample_1_detect.png" alt="Sample 1 Detected" width="400"> |
-| <img src="documentation/data/original/sample_2.png" alt="Sample 2" width="400"/> | <img src="documentation/data/detection_images/sample_2_detect.png" alt="Sample 2 Detected" width="400"> |
+| <img src="documentation/data/original/sample_1.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images_original/sample_1_detect.png" alt="Sample 1 Detected" width="400"> |
+| <img src="documentation/data/original/sample_2.png" alt="Sample 2" width="400"/> | <img src="documentation/data/detection_images_original/sample_2_detect.png" alt="Sample 2 Detected" width="400"> |
 
 
 The images were re-labelled using "LabelImg" that provides boundary coordinates and labels for manually drawn boundary boxes. When an image has been labelled manually, the output from LabelImg is an xml file that provides the image name, image size, bounding box coordinates, and class. See the table below for an example of a manually labelled image with a corresponding dataframe of information.
 
 | Image | Label Dateframe | 
 | ----------------------------------------------------------------------------------- |--------------------------------------------------------------------------------------------------- | 
-| <img src="documentation/data/detection_images/detect_labelimg.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images/detect_df.png" alt="Sample 1 Labels" width="400"> |
+| <img src="documentation/data/detection_images_original/detect_labelimg.png" alt="Sample 1" width="400"/> | <img src="documentation/data/detection_images_original/detect_df.png" alt="Sample 1 Labels" width="400"> |
 
 
 During the model development, a group decision was made to simplify the model to find two classes, person and ball.  
