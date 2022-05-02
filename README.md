@@ -3,13 +3,6 @@ Project to create 2-d minimap representation of football (soccer) games.
 
 Seth Mize, Lucas Franz, Bryant Cornwell
 
-# Abstract
-The world of football analytics has grown in interest as more ideas for tracking players statistics and team movements continue to provide value to the industry.
-Tracking players is a familiar subject, but not applying an active overhead view using recorded or live footage. 
-This project aims to use computer vision techniques to identify feature points and objects to transform their positions to a two-dimensional overhead field representation using available broadcast feed from football games.
-
-Our results provide _____ (Waiting on results)
-
 # Introduction
 
 Over the last two decades the use of analytics has become pervasive in professional sports leagues. One component of interest is player location tracking with respect to the dimensions of the playing surface. The primary means of collecting this information is done through GPS tracking through wearable technology or manual annotations. Our project seeks to accomplish this through computer vision techniques.
@@ -73,6 +66,11 @@ After the checkpoint files for the model are generate, the [exporter_main_tf2.py
     python exporter_main_v2.py --input_type image_tensor --pipeline_config_path training_model/models/pipeline.config --trained_checkpoint_dir training_model/pre-trained-models --output_directory training_model/exported-models
 
 The code for applying the object detection model to an image can be found with the [detection.py](Bryant/detection.py) program, and the result can be found in the results section of this report.
+The following terminal commands were used to generate the results:
+
+    cd Bryant
+    python detection.py ../documentation/test_clips/807-2 ../documentation/test_clips/807-2_objects
+
 
 # Results
 ## Object Detection
