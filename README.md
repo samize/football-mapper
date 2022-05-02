@@ -66,6 +66,11 @@ After the checkpoint files for the model are generate, the [exporter_main_tf2.py
     python exporter_main_v2.py --input_type image_tensor --pipeline_config_path training_model/models/pipeline.config --trained_checkpoint_dir training_model/pre-trained-models --output_directory training_model/exported-models
 
 The code for applying the object detection model to an image can be found with the [detection.py](Bryant/detection.py) program, and the result can be found in the results section of this report.
+The following terminal commands were used to generate the results:
+
+    cd Bryant
+    python detection.py ../documentation/test_clips/807-2 ../documentation/test_clips/807-2_objects
+
 
 # Results
 ## Object Detection
