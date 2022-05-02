@@ -4,12 +4,14 @@ import itertools
 from copy import deepcopy
 import warnings
 import json
+import sys
 
 import cv2
 from tqdm import tqdm
 
 from load_above import *
-from part2 import main, get_projection_matrix, test_transition_matrix, get_transition_matrix, convert_vector
+from part2 import get_projection_matrix, test_transition_matrix, get_transition_matrix, convert_vector
+from part2 import main as part2main
 
 
 def use_pairing(pairings):
@@ -31,20 +33,35 @@ if __name__ == '__main__':
 
     warnings.filterwarnings("ignore")
 
-    image = cv2.imread('../Lucas/output_0.jpg')
-    ground = cv2.imread('above-black-and-red.png')
+    frame_file = Path(sys.agrv[1])
+    corner_pixels_file = Path(sys.argv[2])
+    field_file = Path(sys.argv[3])
+    output_file = Path(sys.argv[4])
 
-    pixels = [(592, 229), (331, 173), (1013, 637), (981, 393), (420, 256)]
+    if not output_file.parent.exists():
+        output_file.parent.mkdir(parents=True, exist_ok=True)
 
-    red_pixels = [(79, 236), (79, 269), (83, 99), (83, 104), (83, 162), (83, 212), (83, 236), (83, 269), (83, 294), (83, 343), (83, 401), (83, 406), (88, 99), (88, 406), (108, 212), (108, 294), (158, 162), (158, 220), (158, 221), (158, 284), (158, 285), (158, 343), (320, 99), (320, 211), (320, 212),
-                  (320, 294), (320, 406), (482, 162), (482, 220), (482, 221), (482, 284), (482, 285), (482, 343), (532, 212), (532, 294), (552, 99), (552, 406), (557, 99), (557, 104), (557, 162), (557, 212), (557, 236), (557, 269), (557, 294), (557, 343), (557, 401), (557, 406), (561, 236), (561, 269)]
+    image = cv2.imread(str(frame_file))
+    ground, red_pixels, line_pixels = part2main(field_file)
+    
+    with open(corner_pixels_file, 'r') as file:
 
 
-    red_pixels = [(482, 343), 
-                  (532, 212), (532, 294), 
-                  (557, 162), (557, 212)]
 
-    red_pixels = [(482, 343), (532, 212), (532, 294), (557, 162), (557, 212)]
+    #ground = cv2.imread('above-black-and-red.png')
+
+    #pixels = [(592, 229), (331, 173), (1013, 637), (981, 393), (420, 256)]
+
+    #red_pixels = [(79, 236), (79, 269), (83, 99), (83, 104), (83, 162), (83, 212), (83, 236), (83, 269), (83, 294), (83, 343), (83, 401), (83, 406), (88, 99), (88, 406), (108, 212), (108, 294), (158, 162), (158, 220), (158, 221), (158, 284), (158, 285), (158, 343), (320, 99), (320, 211), (320, 212),
+    #              (320, 294), (320, 406), (482, 162), (482, 220), (482, 221), (482, 284), (482, 285), (482, 343), (532, 212), (532, 294), (552, 99), (552, 406), (557, 99), (557, 104), (557, 162), (557, 212), (557, 236), (557, 269), (557, 294), (557, 343), (557, 401), (557, 406), (561, 236), (561, 269)]
+
+
+    #red_pixels = [(482, 343), 
+    #              (532, 212), (532, 294), 
+    #              (557, 162), (557, 212)]
+
+    #red_pixels = [(482, 343), (532, 212), (532, 294), (557, 162), (557, 212)]
+
 
     pixel_pairs = list(itertools.product(pixels, red_pixels))
 

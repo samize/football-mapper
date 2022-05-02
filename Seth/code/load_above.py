@@ -1,3 +1,4 @@
+from functools import partial
 from pathlib import Path
 import os
 import sys
@@ -63,3 +64,18 @@ if __name__ == '__main__':
         _, _, _ = main(input_image)
     # input_image = above-with-dots.png
     # output_image = above-black-and-red.png
+
+    #####################################################################################
+    input_directory = Path(sys.argv[1])
+    output_directory = Path(sys.argv[2])
+
+    if not output_directory.exists():
+        output_directory.mkdir(parents=True, exist_ok=True)
+
+    for file in os.listdir(input_directory):
+        file = Path(file)
+        input_path = input_directory / file
+        output_path = output_directory / file.name.replace(file.suffix, '.png')
+        coords_path = output_directory / file.name.replace(file.suffix, '.json')
+
+        main(input_path, output_ath, coords_path)
