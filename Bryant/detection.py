@@ -1,4 +1,4 @@
-# A majority of this code was dervied from the following object detection tutorial:
+# A majority of this code was derived from the following object detection tutorial:
 # Source: https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/auto_examples/plot_object_detection_saved_model.html
 
 import tensorflow as tf
@@ -9,6 +9,11 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings('ignore')
+import json
+from pathlib import Path
+import sys
+import os
+
 
 gpus = tf.config.experimental.list_physical_devices('GPU')
 for gpu in gpus:
@@ -85,11 +90,11 @@ plt.show()
 """
 
 
-def main():
+def main(input_image, output_image, output_coords):
     model = 'TensorFlow/workspace/training_model/exported-models/saved_model'
     labels_path = 'TensorFlow/workspace/training_model/annotations/labels_objects.pbtxt'
     #image_np = np.array(Image.open('../documentation/data/original/sample_1.png'))
-    image_np = np.array(Image.open('C:/Users/bpcor/PycharmProjects/Computer Vision/soccer_detect/data/TV_soccer/frames/0/105.jpg'))
+    image_np = np.array(Image.open(input_image))
     input_tensor = tf.convert_to_tensor(image_np)
     input_tensor = input_tensor[tf.newaxis, ...]
 
@@ -119,16 +124,31 @@ def main():
         min_score_thresh=.30,
         agnostic_mode=False)
 
+    coords = detections['detection_boxes']
+    coords[:, (0, 2)] = coords[:, (0, 2)] * image_np.shape[0]
+    coords[:, (1, 3)] = coords[:, (1, 3)] * image_np.shape[1]
+    #print(coords)
+    with open(output_coords, 'w+') as file:
+        file.write(json.dumps(coords.tolist(), indent=4))
+
     test = Image.fromarray(image_np_with_detections)
-    test.save('detected_105.png')
-    """
-    plt.figure()
-    cv2.imshow('test', image_np_with_detections)
-    plt.imshow(image_np_with_detections)
-    """
+    test.save(output_image)
     print('Done')
 
 
 if __name__ == '__main__':
 
-    main()
+    input_directory = Path(sys.argv[1])
+    output_directory = Path(sys.argv[2])
+
+    if not output_directory.exists():
+        output_directory.mkdir(parents=True, exist_ok=True)
+
+    for file in os.listdir(input_directory):
+        print(file)
+        file = Path(file)
+        input_path = input_directory / file
+        output_path = output_directory / file.name.replace(file.suffix, '.png')
+        coords_path = output_directory / file.name.replace(file.suffix, '.json')
+
+        main(input_path, output_path, coords_path)
