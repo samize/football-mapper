@@ -9,7 +9,6 @@ import sys
 import cv2
 import numpy as np
 from tqdm import tqdm
-import scipy.special
 
 import load_above
 from part2 import get_projection_matrix, test_transition_matrix, get_transition_matrix, convert_vector
@@ -100,10 +99,14 @@ def create_overhead_projection(frame_file: Path, corner_pixels_file: Path, field
 
     image = cv2.imread(str(frame_file))
     ground, red_pixels, line_pixels = load_above.main(str(field_file))
+    red_pixels = red_pixels[24:]
+
     
     with open(corner_pixels_file, 'r') as file:
         pixels = json.loads(file.read())
 
+    pixels = [tuple(pixel) for pixel in pixels]
+    red_pixels = [tuple(pixel) for pixel in red_pixels]
     pixel_pairs = list(itertools.product(pixels, red_pixels))
 
     best_match_count = 0
@@ -112,18 +115,47 @@ def create_overhead_projection(frame_file: Path, corner_pixels_file: Path, field
     best_matrix = None
     match_counts = {}
 
-    combinations = []
+    combinations = set()
 
-    for pair1 in pixel_pairs:
+    #pixel_pairs = [[(529, 150), (482, 162)], 
+    #                [(918, 113), (557, 162)], 
+    #                [(931, 183), (532, 212)],
+    #                [(1069, 168), (557, 212)],
+    #                    [(1148, 481), (482, 343)]]
+
+    for pair1 in tqdm(pixel_pairs, desc='Pair1', unit='combinations'):
         for pair2 in pixel_pairs:
+            if pair1[0][0] > pair2[0][0]:
+                continue
+            if pair1[0][0] == pair2[0][0] and pair1[0][1] > pair2[0][1]:
+                continue
+            if pair1[0] == pair2[0] or pair1[1] == pair2[1]:
+                continue
             for pair3 in pixel_pairs:
+                if pair2[0][0] > pair3[0][0]:
+                    continue
+                if pair2[0][0] == pair3[0][0] and pair2[0][1] > pair3[0][1]:
+                    continue
+                if pair1[0] == pair3[0] or pair2[0] == pair3[0] or pair1[1] == pair3[1] or pair2[1] == pair3[1]:
+                    continue
                 for pair4 in pixel_pairs:
+                    if pair3[0][0] > pair4[0][0]:
+                        continue
+                    if pair3[0][0] == pair4[0][0] and pair3[0][1] > pair4[0][1]:
+                        continue
+                    if pair1[0] == pair4[0] or pair2[0] == pair4[0] or pair3[0] == pair4[0] or pair1[1] == pair4[1] or pair2[1] == pair4[1] or pair3[1] == pair4[1]:
+                        continue
+                    combination = (pair1, pair2, pair3, pair4)
+                    if combination in combinations:
+                        continue
+                    combinations.add(combination)
 
-    #total_combinations = scipy.special.comb(4*, )
+    combinations = list(combinations)
+    #total_combinations = scipy.special.comb(4*len(combinations), 4)
 
-    for index, combination in enumerate(itertools.combinations(pixel_pairs, 4)):
+    for index, combination in enumerate(tqdm(combinations)):
 
-        #image_copy = deepcopy(image)
+        image_copy = deepcopy(image)
 
         try:
             matrix = get_transition_matrix(4, combination)
@@ -141,7 +173,7 @@ def create_overhead_projection(frame_file: Path, corner_pixels_file: Path, field
             new_red_y = new_red_pixel[1] / new_red_pixel[2]
             try:
                 distance = (pixel[0] - new_red_x) ** 2 + (pixel[1] - new_red_y) ** 2
-                if distance > 400:
+                if distance > 100:
                     skip=True
                     break
                 new_red_x, new_red_y = int(new_red_x), int(new_red_y)
@@ -151,12 +183,28 @@ def create_overhead_projection(frame_file: Path, corner_pixels_file: Path, field
             except OverflowError as error:
                 skip=True
                 break
-            #image_copy = cv2.circle(image_copy, (new_red_x, new_red_y), 5, (255,0,0), thickness=-1)
+            image_copy = cv2.circle(image_copy, (new_red_x, new_red_y), 5, (255,0,0), thickness=-1)
 
         if skip:
             continue
         
         matches = 0
+        in_frame = 0
+        for x, y in line_pixels:
+            new_point = np.matmul(transition_matrix, np.array([x, y, 1]))
+            x_, y_ = new_point[0] / new_point[2], new_point[1] / new_point[2]
+            try:
+                x_, y_ = int(x_), int(y_)
+            except ValueError as error:
+                skip = True
+                break
+            if 0 <= x_ and x_ < image.shape[1] and 0 <= y_ and y_ < image.shape[0]:
+                if load_above.is_white_pixel(image[y_,x_,:], threshold=175):
+                    matches += 1
+                in_frame += 1
+                image_copy = cv2.circle(image_copy, (x_,y_), 3, (0,0,255), -1)
+                image_copy[y_, x_, :] = (0,0,255)
+        """
         for x in range(ground.shape[1]):
             if skip:
                 break
@@ -178,16 +226,18 @@ def create_overhead_projection(frame_file: Path, corner_pixels_file: Path, field
                     matches += 1
                     #image_copy = cv2.circle(image_copy, (x_,y_), 3, (0,0,255), -1)
                     #image_copy[y_, x_, :] = (0,0,255)
-
+        """
         if skip:
             continue
         if matches >= best_match_count:
-            print(matches)
+            perc_in_frame = matches / in_frame
+            perc_of_points = matches / len(line_pixels)
+            print(perc_in_frame, perc_of_points)
             best_match_count = matches
             #best_match = image_copy
             best_pairings = combination
             best_matrix = matrix
-            #cv2.imwrite(f'output_0_x/{index}.jpg', image_copy)
+            cv2.imwrite(str(output_directory / output_file.name.replace(output_file.suffix, f'_{index}_map.png')), image_copy)
 
         match_counts[index] = matches
     
@@ -199,16 +249,37 @@ def create_overhead_projection(frame_file: Path, corner_pixels_file: Path, field
 
     np.save(output_file, best_matrix)
 
+def map_objects(matrix_file: Path, objects_file: Path, field_file: Path, output_file: Path):
+
+    matrix = np.load(matrix_file)
+    with open(objects_file, 'r') as file:
+        objects_coords = json.loads(file.read())
+
+    image = cv2.imread(str(field_file))
+
+    for object_ in objects_coords:
+        x_min, y_min, x_max, y_max = object_
+        point = (int((x_max + x_min)/2), int(y_max))
+        new_point = np.matmul(matrix, np.array([point[0], point[1], 1]))
+        new_x, new_y = new_point[0] / new_point[2], new_point[1] / new_point[2]
+        new_x, new_y = int(new_x), int(new_y)
+        image = cv2.circle(image, (new_x, new_y), 1, (0,0,255), -1)
+
+    cv2.imwrite(str(output_file), image)
+
 if __name__ == '__main__':
 
     warnings.filterwarnings("ignore")
 
     frame_file = Path(sys.argv[1])
     corner_pixels_file = Path(sys.argv[2])
-    field_file = Path(sys.argv[3])
-    output_file = Path(sys.argv[4])
+    objects_file = Path(sys.argv[3])
+    field_file = Path(sys.argv[4])
+    output_file = Path(sys.argv[5])
 
-    create_overhead_projection(frame_file, corner_pixels_file, field_file, output_file)
+    matrix_file = output_file.parent / output_file.name.replace(output_file.suffix, '.npy')
+    create_overhead_projection(frame_file, corner_pixels_file, field_file, matrix_file)
+    map_objects(matrix_file, objects_file, field_file, output_file)
 
     #frame_file = documentation/test_clips/807-2_hough
     #corner_pixels_file = documentation/test_clips/807-2_corners

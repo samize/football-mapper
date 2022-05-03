@@ -137,7 +137,7 @@ def create_overhead_projection(frame_file: Path, corner_pixels_file: Path, field
                     skip = True
                     break
 
-                if 0 <= x_ and x_ < image_copy.shape[1] and 0 <= y_ and y_ < image_copy.shape[0] and is_white_pixel(image_copy[y_,x_,:], threshold=175):
+                if 0 <= x_ and x_ < image_copy.shape[1] and 0 <= y_ and y_ < image_copy.shape[0] and load_above.is_white_pixel(image_copy[y_,x_,:], threshold=175):
                     matches += 1
                     image_copy = cv2.circle(image_copy, (x_,y_), 3, (0,0,255), -1)
                     #image_copy[y_, x_, :] = (0,0,255)
