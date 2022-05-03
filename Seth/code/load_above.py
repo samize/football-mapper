@@ -1,6 +1,7 @@
 from functools import partial
 from pathlib import Path
 import os
+import json
 import sys
 
 import cv2
@@ -52,6 +53,11 @@ def main(input_image, output_image=None):
     if output_image is not None:
         cv2.imwrite(output_image, image)
 
+    output_image = Path(output_image)
+    if output_image is not None:
+        with open(output_image.parent / output_image.name.replace(output_image.suffix, '.json'), 'w+') as file:
+            file.write(json.dumps(red_pixels, indent=4))
+
     return (image, red_pixels, line_pixels)
 
 if __name__ == '__main__':
@@ -64,18 +70,3 @@ if __name__ == '__main__':
         _, _, _ = main(input_image)
     # input_image = above-with-dots.png
     # output_image = above-black-and-red.png
-
-    #####################################################################################
-    input_directory = Path(sys.argv[1])
-    output_directory = Path(sys.argv[2])
-
-    if not output_directory.exists():
-        output_directory.mkdir(parents=True, exist_ok=True)
-
-    for file in os.listdir(input_directory):
-        file = Path(file)
-        input_path = input_directory / file
-        output_path = output_directory / file.name.replace(file.suffix, '.png')
-        coords_path = output_directory / file.name.replace(file.suffix, '.json')
-
-        main(input_path, output_ath, coords_path)
