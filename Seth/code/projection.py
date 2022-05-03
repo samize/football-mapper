@@ -99,7 +99,7 @@ def create_overhead_projection(frame_file: Path, corner_pixels_file: Path, field
 
     image = cv2.imread(str(frame_file))
     ground, red_pixels, line_pixels = load_above.main(str(field_file))
-    red_pixels = red_pixels[24:]
+    red_pixels = red_pixels[len(red_pixels)//2+4:]
 
     
     with open(corner_pixels_file, 'r') as file:
@@ -229,14 +229,15 @@ def create_overhead_projection(frame_file: Path, corner_pixels_file: Path, field
         """
         if skip:
             continue
+        perc_in_frame = matches / in_frame
+        perc_of_points = matches / len(line_pixels)
+        #print(perc_in_frame, perc_of_points)
         if matches >= best_match_count:
-            perc_in_frame = matches / in_frame
-            perc_of_points = matches / len(line_pixels)
-            print(perc_in_frame, perc_of_points)
             best_match_count = matches
             #best_match = image_copy
             best_pairings = combination
             best_matrix = matrix
+        if perc_in_frame > 0.9:
             cv2.imwrite(str(output_directory / output_file.name.replace(output_file.suffix, f'_{index}_map.png')), image_copy)
 
         match_counts[index] = matches
