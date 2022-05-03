@@ -29,7 +29,7 @@ def is_black_pixel(pixel, threshold=0):
 
 def main(input_image, output_image=None):
 
-    image = cv2.imread('above-with-dots.png')
+    image = cv2.imread(input_image)
 
     red_pixels = []
     background_pixels = []
@@ -46,15 +46,13 @@ def main(input_image, output_image=None):
                 background_pixels.append((x,y))
             else:
                 pixel = np.array([255,0,0])
-                line_pixels.append(pixel)
+                line_pixels.append((x,y))
 
             image[y,x,:] = pixel
 
     if output_image is not None:
         cv2.imwrite(output_image, image)
-
-    output_image = Path(output_image)
-    if output_image is not None:
+        output_image = Path(output_image)
         with open(output_image.parent / output_image.name.replace(output_image.suffix, '.json'), 'w+') as file:
             file.write(json.dumps(red_pixels, indent=4))
 
