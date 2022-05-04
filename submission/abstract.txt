@@ -1,5 +1,1 @@
-The world of football analytics has grown in interest as more ideas for tracking players statistics and team movements continue to provide value to the industry.
-Tracking players is a familiar subject, but not applying an active overhead view using recorded or live footage.
-This project aims to use computer vision techniques to identify feature points and objects to transform their positions to a two-dimensional overhead field representation using available broadcast feed from football games.
-
-Our results provide _____ (Waiting on results)
+Professional sports industries continue to increase their reliance upon analytics, one of the primary being the tracking of player movement. In football (soccer) this is even more prioritized as the game relies upon player positioning and movement on a vast playing surface. Modern techniques utilize wearable technology to accomplish this. This paper argues that through the adaptation of existing computer vision techniques the same results can be achieved and democratized. Utilizing image channel thresholding, Hough Transformations, algebra, linear algebra, and a deep neural network, our results illustrate the possibilities of transforming player and ball locations from broadcast images into a 2-dimensional overhead coordinate space.
