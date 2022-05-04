@@ -172,6 +172,6 @@ After a closer look at the TensorFlow 2 (TF2) Object Detection API tutorial, the
 
 [5] Configuring TF2 Object Detection Pipeline: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/configuring_jobs.md
 
-[6] Football Player Detection and Tracking Paper: https://github.com/samuro95/Self-Supervised-Small-Soccer-Player-Detection-Tracking
+[6] Football Player Detection and Tracking Paper: https://arxiv.org/abs/2011.10336
 
 [7] Football Player Detection and Tracking Github: https://github.com/samuro95/Self-Supervised-Small-Soccer-Player-Detection-Tracking
