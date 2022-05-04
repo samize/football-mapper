@@ -22,7 +22,6 @@ for gpu in gpus:
 def main(input_image, output_image, output_coords):
     model = 'TensorFlow/workspace/training_model/exported-models/saved_model'
     labels_path = 'TensorFlow/workspace/training_model/annotations/labels_objects.pbtxt'
-    #image_np = np.array(Image.open('../documentation/data/original/sample_1.png'))
     image_np = np.array(Image.open(input_image))
     input_tensor = tf.convert_to_tensor(image_np)
     input_tensor = input_tensor[tf.newaxis, ...]
@@ -56,11 +55,11 @@ def main(input_image, output_image, output_coords):
     coords = detections['detection_boxes']
     scores = detections['detection_scores']
     # De-normalize the coordinates to pixel values.
-    coords[scores >= 0.3, (0, 2)] = coords[scores >= 0.3, (0, 2)] * image_np.shape[0]
-    coords[scores >= 0.3, (1, 3)] = coords[scores >= 0.3, (1, 3)] * image_np.shape[1]
+    coords[:, (0, 2)] = coords[:, (0, 2)] * image_np.shape[0]
+    coords[:, (1, 3)] = coords[:, (1, 3)] * image_np.shape[1]
     # Generate a Json file of Coordinates for the image.
     with open(output_coords, 'w+') as file:
-        file.write(json.dumps(coords.tolist(), indent=4))
+        file.write(json.dumps(coords[scores >= 0.3, :].tolist(), indent=4))
     # Export the image with detections.
     test = Image.fromarray(image_np_with_detections)
     test.save(output_image)
@@ -68,6 +67,7 @@ def main(input_image, output_image, output_coords):
 
 
 if __name__ == '__main__':
+
     # Code takes an input directory and runs the program for every file within that directory.
     # The code outputs a output images with objects detected and a json file with the bounding box coordinates.
     input_directory = Path(sys.argv[1])
