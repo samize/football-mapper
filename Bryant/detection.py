@@ -54,9 +54,10 @@ def main(input_image, output_image, output_coords):
         agnostic_mode=False)
     # Prepare to export the bounding box coordinates for the image.
     coords = detections['detection_boxes']
+    scores = detections['detection_scores']
     # De-normalize the coordinates to pixel values.
-    coords[:, (0, 2)] = coords[:, (0, 2)] * image_np.shape[0]
-    coords[:, (1, 3)] = coords[:, (1, 3)] * image_np.shape[1]
+    coords[scores >= 0.3, (0, 2)] = coords[scores >= 0.3, (0, 2)] * image_np.shape[0]
+    coords[scores >= 0.3, (1, 3)] = coords[scores >= 0.3, (1, 3)] * image_np.shape[1]
     # Generate a Json file of Coordinates for the image.
     with open(output_coords, 'w+') as file:
         file.write(json.dumps(coords.tolist(), indent=4))

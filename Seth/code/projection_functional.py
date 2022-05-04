@@ -34,8 +34,10 @@ if __name__ == '__main__':
 
     input_image = sys.argv[1]
     above_image = sys.argv[2]
-    if len(sys.argv) > 3:
-        pixel_map = sys.argv[3]
+    bounding_boxes = sys.argv[3]
+    output_image = sys.argv[4]
+    if len(sys.argv) > 5:
+        pixel_map = sys.argv[5]
     else:
         pixel_map = None
 
@@ -141,24 +143,38 @@ if __name__ == '__main__':
             best_match = image_copy
             best_pairings = combination
             best_matrix = matrix
-            cv2.imwrite(f'output_0_x/{index}.jpg', image_copy)
+            #cv2.imwrite(f'output_0_x/{index}.jpg', image_copy)
 
         match_counts[index] = matches
     
-    with open('matches.json', 'w+') as file:
-        file.write(json.dumps(match_counts, indent=4))
 
-    with open('pairings.json', 'w+') as file:
-        file.write(json.dumps(best_pairings, indent=4))
+    #with open('matches.json', 'w+') as file:
+    #    file.write(json.dumps(match_counts, indent=4))
 
-    broadcast = cv2.imread('broadcast_img_0.png')
+    #with open('pairings.json', 'w+') as file:
+    #    file.write(json.dumps(best_pairings, indent=4))
 
-    for x in range(broadcast.shape[1]):
-        for y in range(broadcast.shape[0]):
-            if is_black_pixel(broadcast[y,x,:], threshold=0):
-                new_point = np.matmul(best_matrix, np.array([x,y,1]))
-                new_x, new_y = new_point[0] / new_point[2], new_point[1] / new_point[2]
-                new_x, new_y = int(new_x), int(new_y)
-                ground = cv2.circle(ground, (new_x, new_y), 1, (0,0,255), -1)
+    with open(bounding_boxes, 'r') as file:
+        boxes = json.loads(file.read())
 
-    cv2.imwrite('mapped.jpg', ground)
+    for box in boxes:
+        min_y, min_x, max_y, max_x = box
+        x, y = (max_x + min_x) // 2, max_y
+        new_point = np.matmul(best_matrix, np.array([x,y,1]))
+        new_x, new_y = new_point[0] / new_point[2], new_point[1] / new_point[2]
+        new_x, new_y = int(new_x), int(new_y)
+        ground = cv2.circle(ground, (new_x, new_y), 1, (0,0,255), -1)
+
+    #broadcast = cv2.imread('broadcast_img_0.png')
+
+    #for x in range(broadcast.shape[1]):
+    #    for y in range(broadcast.shape[0]):
+    #        if is_black_pixel(broadcast[y,x,:], threshold=0):
+    #            new_point = np.matmul(best_matrix, np.array([x,y,1]))
+    #            new_x, new_y = new_point[0] / new_point[2], new_point[1] / new_point[2]
+    #            new_x, new_y = int(new_x), int(new_y)
+    #            ground = cv2.circle(ground, (new_x, new_y), 1, (0,0,255), -1)
+
+
+
+    cv2.imwrite(output_image, ground)
