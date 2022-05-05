@@ -163,7 +163,7 @@ if __name__ == '__main__':
         new_point = np.matmul(best_matrix, np.array([x,y,1]))
         new_x, new_y = new_point[0] / new_point[2], new_point[1] / new_point[2]
         new_x, new_y = int(new_x), int(new_y)
-        ground = cv2.circle(ground, (new_x, new_y), 2, (0,0,255))
+        ground = cv2.circle(ground, (new_x, new_y), 3, (0,0,255))
 
     #broadcast = cv2.imread('broadcast_img_0.png')
 
