@@ -3,6 +3,14 @@ Project to create 2-d minimap representation of football (soccer) games.
 
 Seth Mize, Lucas Franz, Bryant Cornwell
 
+# Code Execution
+
+## Feature Point Extraction
+
+### PitchLineSteps.py
+
+
+
 # Introduction
 
 Over the last two decades the use of analytics has become pervasive in professional sports leagues. One component of interest is player location tracking with respect to the dimensions of the playing surface. The primary means of collecting this information is done through GPS tracking through wearable technology or manual annotations. Our project seeks to accomplish this through computer vision techniques.
