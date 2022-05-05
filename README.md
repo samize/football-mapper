@@ -9,23 +9,13 @@ Seth Mize, Lucas Franz, Bryant Cornwell
 
 ### PitchLineSteps.py
 
+PitchLineSteps.py is a script used to run the PitchFeatures.py script over multiple images. This requires a folder of images to be present in the folder /documentation/test_clips/ .
 
+Passing the name of the folder to PitchLineSteps.py in the command line with the following command will run PitchFeatures.py for each image, and save the resulting feature point image, hough line image, and coordinates of the feature points.
 
-# Introduction
+    python Lucas/PitchLineSteps.py {images_folder_name}
 
-Over the last two decades the use of analytics has become pervasive in professional sports leagues. One component of interest is player location tracking with respect to the dimensions of the playing surface. The primary means of collecting this information is done through GPS tracking through wearable technology or manual annotations. Our project seeks to accomplish this through computer vision techniques.
-
-Focusing on the sport of football (soccer), we will utilize available broadcast feeds to convert the video frames into a two-dimensional, overhead representation of the displayed player locations based on the corresponding portion of the pitch in the frame of the image. This will be accomplished by extracting the lines from the pitch and the point/s at which a player is making contact with the pitch, and applying the appropriate projection to transform the found coordinates into their two-dimensional overhead representation. Success of this process for a variety of still images for multiple pitches will establish the foundation for us to convert an entire broadcast feed into this overhead viewpoint.
-
-# Background and Related Work
-
-Our project is focused on coupling multiple existing techniques towards a new application. The problem can be broken into 3 primary categories; Line Detection, Object Detection, and Projection. By identifying the standard lines of the pitch, we can compare them with a proportion overhead representation of standard pitch line to solve for a projection transformation. Once a transformation matrix is solved for, identified objects can be mapped into the same overhead space. Further object categorization can be used to provide more detail to the generated overhead representation.
-
-When investigating the best applications of line detection we found the most useful prior research to be lane detection for autonomous vehicles. The Tracking soccer players aiming their kinematical motion analysis article discussed how to split blobs or groups of more that one player with detection which we will need to utilize when recognizing a detected groups of players. For the image projection from the video projection to the overhead projection, the course material related to assignment 2 has been our reference.
-
-# Methods
-## Overhead view base photo
-Source: https://conceptdraw.com/a1992c3/preview
+# Paper Exteneded
 
 ## Object Detection
 
@@ -80,8 +70,7 @@ The following terminal commands were used to generate the results:
     python detection.py ../documentation/test_clips/807-2 ../documentation/test_clips/807-2_objects
 
 
-# Results
-## Object Detection
+## Results
 The following images were taken from the TV_Soccer dataset provided by the soccer player detection and tracking research paper by Samuel Hurault, Coloma Ballester, Gloria Haro ([google drive link](https://drive.google.com/drive/folders/1dE1yzHyBOVGs4A1VlmFTq_TXOT1S5f_b?usp=sharing)).
 
 
@@ -89,8 +78,7 @@ The following images were taken from the TV_Soccer dataset provided by the socce
 | ----------------------------------------------------------------------------------- |--------------------------------------------------------------------------------------------------- | 
 | ![105.jpg](documentation/data/object_detection/105.jpg) | ![detected_105.jpg](documentation/data/object_detection/detected_105.png) |
 
-# Discussion
-## Object Detection
+## Discussion
 ### Image labeling and dataset for custom object detection model
 
 The first task was to take some images from a few football games and manually label them to train a model for object detection.
@@ -166,10 +154,7 @@ These methods consisted of transferring the model to a frozen inference graph an
 
 After a closer look at the TensorFlow 2 (TF2) Object Detection API tutorial, the "Examples" section provided starter code for loading a TF2 model and running it on an image. The code for this can be found in [detection.py](Bryant/detection.py). See the results section for images tested using this model.
 
-
-# Conclusion
-
-# References
+## References
 [1] LabelImg Github: https://github.com/tzutalin/labelImg
 
 [2] TF2 Object Detection API Tutorial: https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html
