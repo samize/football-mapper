@@ -22,6 +22,101 @@ The following terminal commands were used to generate detection images and bound
     cd Bryant
     python detection.py ../documentation/test_clips/807-2 ../documentation/test_clips/807-2_objects
 
+### load_above.py
+
+Designed to take an input image in that is white background, black lines, and red dots representing desired feature points. The input image is supposed to represent the black and white version of the overhead view of the pitch.
+
+To generally run it, use the following command
+
+    python Seth/code/load_above.py <input_image> <output_image>
+
+To generate the files we did, run the following command
+
+    python Seth/code/load_above.py Seth/above-with-dots.png Seth/overhead-space.png
+
+In addition to the image output, it will also output a .json file containing a list of the (x, y) coordinates for the red pixels in the input image.
+
+### projection_functional.py
+
+This is the core program that was used to produce the projective output. To execute the code, you need to pass input values from the outputs of several other parts of the project. 
+
+    python Seth/code/projection_functional.py <input image> <overhead image> <bounding boxes> <output image> <pixel mapping>
+
+#### \<input image\>
+
+This should be the input image file, in our case, we tended to use the hough line variant of the image. An example:
+
+    documentation/test_clips/807-2_hough/frame_0.jpg
+
+#### \<overhead image\>
+
+This should be the overhead image used to apply projections to / from. In general, it should be the output of the `load_above.py`.
+
+In our case, we used
+
+    Seth/overhead-space.png
+
+#### \<bounding boxes\>
+
+This should be a .json representation of the bounding boxes of objects we want to project. An example of what we used is
+
+    documentation/test_clips/807-2_objects/frame_0.json
+
+#### \<output image\>
+
+This should be the file path of your output image. We decided to place our outputs in the 807-2_results, example:
+
+    documentation/test_clips/807-2_results/frame_0.png
+
+In addition to the output image specified, it will also output the overhead lines projected onto the input image as a new file with `<filename>_hough.extenxsion` in the same directory as the output image. Example:
+
+    documentation/test_clips/807-2_results/frame_0_hough.png
+
+#### \<pixel mapping\>
+
+This should be a json file representing pairs of (x,y) coordinates mapping from the hough lines feature points to the overhead feature points. For this program, these need to be manually generated. There should be 4 pairs of points. Example
+
+    documentation/test_clips/807-2_maps/frame_0_map.json
+
+
+### projection.py
+
+This program's output is not representative of what it is intended to output. It was the most recent version of an attempt to identify the feature point pairing, described above in the `<pixel mapping>` section, automatically instead of via a manual process. It was then intended to combine it with the rest of the project to produce the frame from the video projected onto the overhead image.
+
+The current state may or may not run, as we had to pause development on this script to transition to producing the final report, poster, and presentation.
+
+To execute the code, run
+
+    python Seth/projection.py <frame_file> <corner_pixels_file> <objects_file> <field_file> <output_file>
+
+#### \<frame_file\>
+
+Same as `<input image>` from `projection_functional.py`
+
+#### \<corner_pixels_file\>
+
+This should be a `.json` file representing the output of the feature points from the hough line section of the project.
+
+An example input
+
+    documentation/test_clips/807-2_corners/frame_0.json
+
+#### \<objects_file\>
+
+Same as `<bounding boxes>` from `projection_functional.py`
+
+#### \<field_file\>
+
+Same as `<overhead image>` from `projection_functional.py`
+
+#### \<output_file\>
+
+Same as `<output file>` from `projection_functional.py`
+
+### remove_people.py
+
+This is code designed to take a `.xml` representation of object bounding boxes and to remove those from the image. This code is no longer used / is deprecated due to improvements in the hough line / feature point selection.
+
 # Paper Extended
 
 ## Object Detection
