@@ -15,7 +15,14 @@ Passing the name of the folder to PitchLineSteps.py in the command line with the
 
     python Lucas/PitchLineSteps.py {images_folder_name}
 
-# Paper Exteneded
+### detection.py
+
+The following terminal commands were used to generate detection images and bounding box json files for all the images within the input directory:
+
+    cd Bryant
+    python detection.py ../documentation/test_clips/807-2 ../documentation/test_clips/807-2_objects
+
+# Paper Extended
 
 ## Object Detection
 
@@ -70,8 +77,8 @@ The following terminal commands were used to generate the results:
     python detection.py ../documentation/test_clips/807-2 ../documentation/test_clips/807-2_objects
 
 
-## Results
-The following images were taken from the TV_Soccer dataset provided by the soccer player detection and tracking research paper by Samuel Hurault, Coloma Ballester, Gloria Haro ([google drive link](https://drive.google.com/drive/folders/1dE1yzHyBOVGs4A1VlmFTq_TXOT1S5f_b?usp=sharing)).
+## Example Result
+The following image was taken from the TV_Soccer dataset provided by the soccer player detection and tracking research paper by Samuel Hurault, Coloma Ballester, Gloria Haro ([google drive link](https://drive.google.com/drive/folders/1dE1yzHyBOVGs4A1VlmFTq_TXOT1S5f_b?usp=sharing)).
 
 
 | Original Image | Detected Image | 
