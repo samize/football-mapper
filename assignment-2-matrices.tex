@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\setcounter{MaxMatrixCols}{12}
+
+\begin{document}
+To find a matrix \\\\
+	$
+	\begin{pmatrix}
+		a & b & c\\
+		d & e & f\\
+		g & h & 1\\
+	\end{pmatrix}
+	$\\\\
+	such that \\\\
+	$
+	\begin{pmatrix}
+		a & b & c\\
+		d & e & f\\
+		g & h & 1\\
+	\end{pmatrix}
+	\begin{pmatrix}
+		x\\
+		y\\
+		1\\
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		x^* z^*\\
+		y^* z^*\\
+		z^*\\
+	\end{pmatrix}
+	\rightarrow
+	\begin{pmatrix}
+		x^*\\
+		y^*\\
+	\end{pmatrix}
+	$\\\\
+	we can solve the following equation for $a, b, c, d, e, f, g, h$ given four sets of $x_{i}, y_{i}, x_{i}^*, y_{i}^*$ values.\\\\
+	$
+	\begin{pmatrix}
+		x_1 & y_1 & 1 & 0 & 0 & 0 & 0 & 0 & -x_1^* & 0 & 0 & 0\\
+		0 & 0 & 0 & x_1 & y_1 & 1 & 0 & 0 & -y_1^* & 0 & 0 & 0\\
+		0 & 0 & 0 & 0 & 0 & 0 & x_1 & y_1 & -1 & 0 & 0 & 0\\
+		x_2 & y_2 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & -x_2^* & 0 & 0\\
+		0 & 0 & 0 & x_2 & y_2 & 1 & 0 & 0 & 0 & -y_2^* & 0 & 0\\
+		0 & 0 & 0 & 0 & 0 & 0 & x_2 & y_2 & 0 & -1 & 0 & 0\\
+		x_3 & y_3 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -x_3^* & 0\\
+		0 & 0 & 0 & x_3 & y_3 & 1 & 0 & 0 & 0 & 0 & -y_3^* & 0\\
+		0 & 0 & 0 & 0 & 0 & 0 & x_3 & y_3 & 0 & 0 & -1 & 0\\
+		x_4 & y_4 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -x_4^*\\
+		0 & 0 & 0 & x_4 & y_4 & 1 & 0 & 0 & 0 & 0 & 0 & -y_4^*\\
+		0 & 0 & 0 & 0 & 0 & 0 & x_4 & y_4 & 0 & 0 & 0 & -1\\
+	\end{pmatrix}
+	\begin{pmatrix}
+	a\\
+	b\\
+	c\\
+	d\\
+	e\\
+	f\\
+	g\\
+	h\\
+	z_1^*\\
+	z_2^*\\
+	z_3^*\\
+	z_4^*\\
+	\end{pmatrix}
+	=
+		\begin{pmatrix}
+	0\\
+	0\\
+	-1\\
+	0\\
+	0\\
+	-1\\
+	0\\
+	0\\
+	-1\\
+	0\\
+	0\\
+	-1\\
+	\end{pmatrix}
+	$
+\end{document}
