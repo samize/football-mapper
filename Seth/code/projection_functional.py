@@ -143,7 +143,9 @@ if __name__ == '__main__':
             best_match = image_copy
             best_pairings = combination
             best_matrix = matrix
-            #cv2.imwrite(f'output_0_x/{index}.jpg', image_copy)
+            output_path = Path(output_image)
+            inverse_output = output_path.parent / output_path.name.replace(output_path.suffix, f'_hough{output_path.suffix}')
+            cv2.imwrite(str(inverse_output), image_copy)
 
         match_counts[index] = matches
     
