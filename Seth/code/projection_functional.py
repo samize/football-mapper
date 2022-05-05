@@ -143,7 +143,9 @@ if __name__ == '__main__':
             best_match = image_copy
             best_pairings = combination
             best_matrix = matrix
-            #cv2.imwrite(f'output_0_x/{index}.jpg', image_copy)
+            output_path = Path(output_image)
+            inverse_output = output_path.parent / output_path.name.replace(output_path.suffix, f'_hough{output_path.suffix}')
+            cv2.imwrite(str(inverse_output), image_copy)
 
         match_counts[index] = matches
     
@@ -163,7 +165,7 @@ if __name__ == '__main__':
         new_point = np.matmul(best_matrix, np.array([x,y,1]))
         new_x, new_y = new_point[0] / new_point[2], new_point[1] / new_point[2]
         new_x, new_y = int(new_x), int(new_y)
-        ground = cv2.circle(ground, (new_x, new_y), 1, (0,0,255), -1)
+        ground = cv2.circle(ground, (new_x, new_y), 3, (0,0,255))
 
     #broadcast = cv2.imread('broadcast_img_0.png')
 
